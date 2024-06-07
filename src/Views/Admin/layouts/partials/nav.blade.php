@@ -1,13 +1,9 @@
-<a href="{{ url('admin/dasboad') }}" class="menu_item d-flex align-items-center gap-3 ">
+<a href="{{ url('admin/') }}" class="menu_item d-flex align-items-center gap-3 ">
     <i class="fa-solid fa-hard-drive"></i>
     <span>Bảng điều khiển</span>
 </a>
 
-<<<<<<< HEAD
-<a href="{{ url('admin/account') }}" class="menu_item d-flex align-items-center gap-3 ">
-=======
-<a href="{{ url('admin/users')}}" class="menu_item d-flex align-items-center gap-3 ">
->>>>>>> f79e867b64f774e879813ba46255981ab9dca4d8
+<a href="{{ url('admin/users') }}" class="menu_item d-flex align-items-center gap-3 ">
     <i class="fa-solid fa-address-card"></i>
     <span>Quản lý người dùng</span>
 </a>
