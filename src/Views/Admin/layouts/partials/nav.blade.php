@@ -3,7 +3,7 @@
     <span>Bảng điều khiển</span>
 </a>
 
-<a href="{{ url('admin/account')}}" class="menu_item d-flex align-items-center gap-3 ">
+<a href="{{ url('admin/users')}}" class="menu_item d-flex align-items-center gap-3 ">
     <i class="fa-solid fa-address-card"></i>
     <span>Quản lý người dùng</span>
 </a>
