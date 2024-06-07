@@ -1,13 +1,25 @@
 <header class="container-fuild">
     <div class="header_top">
         <div class="box_wrap_top d-flex justify-content-md-between justify-content-center">
-            <p class="title_header">Chào mừng quang đến với website shop võ thuật</p>
+            <p class="title_header">Chào mừng bạn đến với website shop võ thuật</p>
             <div class="d-md-block d-none">
                 <div class="d-flex d-flex align-items-center gap-2">
-                    <a href="/tai_khoan/index.php" class="text_link_mm d-flex align-items-center gap-2">
-                        <i class="fa-solid fa-user"></i>
-                        <span>Tài khoản</span>
-                    </a>
+                    <nav>
+                        @if (!isset($_SESSION['user']))
+                            <a class="text_link_mm d-flex align-items-center gap-2" href="{{ url('login') }}">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Log in</span>
+                            </a>
+                        @endif
+
+                        @if (isset($_SESSION['user']))
+                            <a class="text_link_mm d-flex align-items-center gap-2" href="{{ url('logout') }}">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Log out</span>
+                            </a>
+                        @endif
+                    </nav>
+                    
                     <div class="d-flex d-flex align-items-center gap-2">
                         <i class="fa-brands fa-product-hunt"></i>
                         <span>Sản phẩm</span>
@@ -25,15 +37,15 @@
     <div class="header_center">
         <div class="box_wrap_center d-flex justify-content-between align-items-center">
             <div class="box_icon_menu d-md-none d-block">
-                
+
                 <a class="btn " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
                     aria-controls="offcanvasExample">
                     <i class="fa-solid fa-bars bars"></i>
                 </a>
-              
+
             </div>
             <a href="/trang_chinh/index.php">
-                <div class="box_img"><img src="{{asset('assets/client/img/logo.png')}}" alt=""></div>
+                <div class="box_img"><img src="{{ asset('assets/client/img/logo.png') }}" alt=""></div>
             </a>
             <div class="d-none d-md-block">
                 <form action="/san_pham/index.php" method="GET" class="box_search d-flex align-items-center">

@@ -86,15 +86,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($list_top_5_user as $list) : extract($list) ?>
-                    <tr style="vertical-align: middle;">
-                        <td><?= $user_id ?></td>
-                        <td><?= $full_name ?></td>
-                        <td><?= $email ?></td>
-                        <td><?= $phone ?></td>
-                        <td><?= $address ?></td>
-                    </tr>
-                    <?php endforeach ?>
+
+                    @foreach ($users as $user)
+    
+                        <tr>
+                            <td><?= $user['id'] ?></td>
+                            <td>
+                                <img src="{{ asset($user['avatar']) }}" alt="" width="100px">
+                            </td>
+                            <td><?= $user['name'] ?></td>
+                            <td><?= $user['email'] ?></td>
+                            <td><?= $user['type'] ?></td>
+                            <td><?= $user['created_at'] ?></td>
+                            <td><?= $user['updated_at'] ?></td>
+                        </tr>
+                    @endforeach
+    
                 </tbody>
             </table>
         </div>

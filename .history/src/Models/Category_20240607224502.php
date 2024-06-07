@@ -1,4 +1,5 @@
 <?php 
+
 namespace Myasus\Assigment\Models;
 use Myasus\Assigment\Commons\Model;
 
