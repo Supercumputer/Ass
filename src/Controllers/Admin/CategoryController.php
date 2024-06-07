@@ -1,0 +1,181 @@
+<?php
+
+namespace Myasus\Assigment\Controllers\Admin;
+
+use Myasus\Assigment\Commons\Controller;
+use Myasus\Assigment\Commons\Helper;
+use Myasus\Assigment\Models\Category;
+use Rakit\Validation\Validator;
+
+class CategoryController extends Controller
+{
+
+    private Category $category;
+    public function __construct()
+    {
+        $this->category = new Category();
+    }
+
+    //  public function index()
+    // {
+
+    //     helper::debug($this->category);
+    //     echo __CLASS__ . '@' . __FUNCTION__;
+
+    // }
+    public function index()
+    {
+
+        [$category, $totalPage] = $this->category->paginate($_GET['page'] ?? 1);
+
+
+        $this->renderViewAdmin('category.index', [
+            'category' => $category,
+            'total' => $totalPage,
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $category = $this->category->findByID($id);
+
+        $this->category->delete($id);
+
+        if (
+            $category['avata_cate']
+            && file_exists(PATH_ROOT . $category['avata_cate'])
+        ) {
+            unlink(PATH_ROOT . $category['avata_cate']);
+        }
+
+        header('Location: ' . url('admin/categorys'));
+        exit();
+
+    }
+
+    public function create()
+    {
+        $this->renderViewAdmin('category.create');
+
+    }
+
+    public function store()
+    {
+        //   helper::debug($_POST +  $_FILES);
+        $validator = new Validator;
+        $validation = $validator->make($_POST + $_FILES, [
+            'name' => 'required|max:50',
+            'avata_cate' => 'uploaded_file:0,2M,jpg,jpeg',
+
+        ]);
+
+        $validation->validate();
+
+        if ($validation->fails()) {
+            $_SESSION['$errors'] = $validation->errors()->firstOfAll();
+
+            header('location: ' . url('admin/categorys/create'));
+            exit;
+            // helper::debug($errors);
+            // echo 'nghẹo';
+        } else {
+            $data = [
+                'name' => $_POST['name'],
+               
+            ];
+            //    helper::debug($_FILES);
+            if (!empty($_FILES['avata_cate']) && $_FILES['avata_cate']['size'] > 0) {
+                $from = $_FILES['avata_cate']['tmp_name'];
+                $to = 'assets/uploads/' . time() . $_FILES['avata_cate']['name'];
+
+                if (move_uploaded_file($from, PATH_ROOT . $to)) {
+
+                    $data['avata_cate'] = $to;
+                } else {
+
+                    $_SESSION['errors']['avata_cate'] = 'không thành công ';
+                    header('location: ' . url('admin/categorys/create'));
+                    exit;
+                }
+
+            }
+            $this->category->insert($data);
+            $_SESSION['status'] = true;
+            $_SESSION['msg'] = 'thao tác thành công';
+            header('location: ' . url('admin/categorys'));
+            exit;
+        }
+
+    } 
+    public function edit($id)
+    {
+        $category = $this->category->findByID($id);
+
+        $this->renderViewAdmin('category.edit', [
+            'category' => $category,
+        ]);
+    }
+    public function update($id)
+    {
+        $category = $this->category->findByID($id);
+
+        $validator = new Validator;
+        $validation = $validator->make($_POST + $_FILES, [
+            'name'                  => 'required|max:50',
+           
+            'avata_cate'                => 'uploaded_file:0,2M,png,jpg,jpeg',
+           
+        ]);
+        $validation->validate();
+
+        if ($validation->fails()) {
+            $_SESSION['errors'] = $validation->errors()->firstOfAll();
+
+            header('Location: ' . url("admin/categorys/{$category ['id']}/edit"));
+            exit;
+        } else {
+            $data = [
+                'name'      => $_POST['name'],
+                
+            ];
+
+            $flagUpload = false;
+            if (isset($_FILES['avata_cate']) && $_FILES['avata_cate']['size'] > 0) {
+
+                $flagUpload = true;
+
+                $from = $_FILES['avata_cate']['tmp_name'];
+                $to = 'assets/uploads/' . time() . $_FILES['avata_cate']['name'];
+
+                if (move_uploaded_file($from, PATH_ROOT . $to)) {
+                    $data['avata_cate'] = $to;
+                } else {
+                    $_SESSION['errors']['avata_cate'] = 'Upload Không thành công';
+
+                    header('Location: ' . url("admin/categorys/{$category['id']}/edit"));
+                    exit;
+                }
+            }
+
+            $this->category->update($id, $data);
+
+            if (
+                $flagUpload
+                && $category['avata_cate']
+                && file_exists(PATH_ROOT . $category['avata_cate'])
+            ) {
+                unlink(PATH_ROOT . $category['avata_cate']);
+            }
+
+            $_SESSION['status'] = true;
+            $_SESSION['msg'] = 'Thao tác thành công';
+
+            header('Location: ' . url("admin/categorys/{$category['id']}/edit"));
+            exit;
+        }
+    }
+        
+
+
+}
+
