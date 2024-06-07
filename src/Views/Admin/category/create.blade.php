@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-4">
                 <label for="formFile" class="form-label">Hình ảnh</label>
-                <input class="form-control" type="file" name="avata_cate">
+                <input class="form-control" type="file" name="image">
             </div>
          
             <div class="box_btn">
