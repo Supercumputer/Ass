@@ -1,0 +1,24 @@
+{
+  "name": "myasus/assigment",
+  "autoload": {
+    "psr-4": {
+      "Myasus\\Assigment\\": "src/"
+    },
+    "files": [
+      "helper.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Ho Van Quang",
+      "email": "quangcover2k3az@gmail.com"
+    }
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^5.6",
+    "eftec/bladeone": "^4.13",
+    "doctrine/dbal": "^4.0",
+    "rakit/validation": "^1.4",
+    "bramus/router": "~1.6"
+  }
+}
