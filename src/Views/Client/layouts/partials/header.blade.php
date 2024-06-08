@@ -106,7 +106,7 @@
 
             </div>
 
-            <a class="cart d-flex align-items-center" href="/gio_hang/index.php">
+            <a class="cart d-flex align-items-center" href="{{ url('cart') }}">
                 <span class="d-none d-lg-block">Giỏ hàng</span>
                 <i class="fa-solid fa-cart-shopping"></i>
             </a>

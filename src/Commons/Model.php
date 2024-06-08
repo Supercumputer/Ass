@@ -38,6 +38,11 @@ class Model
             ->fetchAllAssociative();
     }
 
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+
     public function count()
     {
         return $this->queryBuilder
