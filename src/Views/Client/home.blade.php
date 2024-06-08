@@ -87,67 +87,28 @@
 
             <div class="swiper card_slider">
                 <div class="swiper-wrapper">
+
+                @foreach ( $categorys as $category)
+
+                <div class="swiper-slide">
+                        <a href="">
+                            <div class="img_box">
+                                <img src="{{asset( $category['image'] )}}" alt="">
+                            </div>
+                            <div class="tieudeanh">
+                                <h5 class="tieudend">{{ $category['name']}}</h5>
+                            </div>
+                        </a>
+                    </div>
+
+                @endforeach
                     
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
 
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
-
-                    </div>
                     
                 </div>
                 <div class="swiper-button-next arrow arrow-left"></div>
                 <div class="swiper-button-prev arrow arrow-left"></div>
-            </div>
+            </div> 
 
         </div>
     </div>
