@@ -8,7 +8,8 @@ use Myasus\Assigment\Commons\Helper;
 use Myasus\Assigment\Models\User;
 use Rakit\Validation\Validator;
 
-class UserController extends Controller{
+class UserController extends Controller
+{
     private User $user;
     public function __construct()
     {
@@ -18,14 +19,10 @@ class UserController extends Controller{
     public function index()
     {
         $users = $this->user->all();
-
         $this->renderViewAdmin('users.index', [
-            'users' => $users
+            'users' => $users 
         ]);
-        
     }
-
-
     public function create()
     {
         $this->renderViewAdmin('users.create');
@@ -44,7 +41,7 @@ class UserController extends Controller{
         ]);
         $validation->validate();
 
-        
+
 
         if ($validation->fails()) {
             $_SESSION['errors'] = $validation->errors()->firstOfAll();
@@ -170,7 +167,7 @@ class UserController extends Controller{
     {
         try {
             $user = $this->user->findByID($id);
-            
+
             $this->user->delete($id);
 
             if ($user['avatar'] && file_exists(PATH_ROOT . $user['avatar'])) {

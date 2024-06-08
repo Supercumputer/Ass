@@ -14,6 +14,8 @@ class Product extends Model
                 'p.category_id',
                 'p.name',
                 'p.img_thumbnail',
+                'p.price_regular',
+                'p.price_sale',
                 'p.created_at',
                 'p.updated_at',
                 'c.name as c_name'
@@ -38,6 +40,8 @@ class Product extends Model
                 'p.category_id',
                 'p.name',
                 'p.img_thumbnail',
+                'p.price_regular',
+                'p.price_sale',
                 'p.created_at',
                 'p.updated_at',
                 'c.name as c_name'
