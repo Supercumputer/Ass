@@ -86,17 +86,22 @@
         <div class="slider_container">
 
             <div class="swiper card_slider">
+           
                 <div class="swiper-wrapper">
 
-                @foreach ( $categorys as $category)
-
+                
+              @foreach ( $categorys as $category)
                 <div class="swiper-slide">
                         <a href="">
-                            <div class="img_box">
+                            <!-- <div class="img_box">
                                 <img src="{{asset( $category['image'] )}}" alt="">
+                            </div> -->
+                            <div class="img_box" style="height: 400px;">
+                               <img src="{{asset( $category['image'] )}}" alt="">
                             </div>
                             <div class="tieudeanh">
-                                <h5 class="tieudend">{{ $category['name']}}</h5>
+                                <a href=""> <h5 class="tieudend">{{ $category['name']}}</h5></a>
+
                             </div>
                         </a>
                     </div>
@@ -106,6 +111,7 @@
 
                     
                 </div>
+       
                 <div class="swiper-button-next arrow arrow-left"></div>
                 <div class="swiper-button-prev arrow arrow-left"></div>
             </div> 

@@ -14,14 +14,15 @@ class HomeController extends Controller{
     }
 
     public function index(){
-
+        
         $categorys = $this->category->all();
 
-    
         $this->renderViewClient('home', [
             'categorys'=> $categorys
         ]);
     }
+
+ 
     
    
 
