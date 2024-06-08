@@ -10,7 +10,7 @@ Danh muc
 <div class="box_table my-3">
     <div class="box_btns py-2 mx-3 d-flex justify-content-between align-items-center">
         <div class="box_btn">
-            <button type="button" class="btn btn-primary"><a href="{{ url('admin/categorys/create') }}">Tạo
+            <button type="button" class="btn btn-primary"><a href="{{ url('admin/categories/create') }}">Tạo
                     mới</a></button>
             <button type="button" class="btn btn-secondary select-all">Chọn tất cả</button>
             <button type="button" class="btn btn-success deselect-all">Bỏ chọn tất cả</button>

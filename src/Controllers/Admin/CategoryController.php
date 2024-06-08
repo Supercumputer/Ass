@@ -48,7 +48,7 @@ class CategoryController extends Controller
             unlink(PATH_ROOT . $category['image']);
         }
 
-        header('Location: ' . url('admin/categorys'));
+        header('Location: ' . url('admin/categories'));
         exit();
 
     }
@@ -74,7 +74,7 @@ class CategoryController extends Controller
         if ($validation->fails()) {
             $_SESSION['$errors'] = $validation->errors()->firstOfAll();
 
-            header('location: ' . url('admin/categorys/create'));
+            header('location: ' . url('admin/categories/create'));
             exit;
             // helper::debug($errors);
             // echo 'nghẹo';
@@ -94,7 +94,7 @@ class CategoryController extends Controller
                 } else {
 
                     $_SESSION['errors']['image'] = 'không thành công ';
-                    header('location: ' . url('admin/categorys/create'));
+                    header('location: ' . url('admin/categories/create'));
                     exit;
                 }
 
@@ -102,7 +102,7 @@ class CategoryController extends Controller
             $this->category->insert($data);
             $_SESSION['status'] = true;
             $_SESSION['msg'] = 'thao tác thành công';
-            header('location: ' . url('admin/categorys'));
+            header('location: ' . url('admin/categories'));
             exit;
         }
 
@@ -131,7 +131,7 @@ class CategoryController extends Controller
         if ($validation->fails()) {
             $_SESSION['errors'] = $validation->errors()->firstOfAll();
 
-            header('Location: ' . url("admin/categorys/{$category ['id']}/edit"));
+            header('Location: ' . url("admin/categories/{$category ['id']}/edit"));
             exit;
         } else {
             $data = [
@@ -152,7 +152,7 @@ class CategoryController extends Controller
                 } else {
                     $_SESSION['errors']['image'] = 'Upload Không thành công';
 
-                    header('Location: ' . url("admin/categorys/{$category['id']}/edit"));
+                    header('Location: ' . url("admin/categories/{$category['id']}/edit"));
                     exit;
                 }
             }
@@ -170,7 +170,7 @@ class CategoryController extends Controller
             $_SESSION['status'] = true;
             $_SESSION['msg'] = 'Thao tác thành công';
 
-            header('Location: ' . url("admin/categorys/{$category['id']}/edit"));
+            header('Location: ' . url("admin/categories/{$category['id']}/edit"));
             exit;
         }
     }
