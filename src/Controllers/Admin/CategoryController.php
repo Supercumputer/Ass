@@ -42,10 +42,10 @@ class CategoryController extends Controller
         $this->category->delete($id);
 
         if (
-            $category['avata_cate']
-            && file_exists(PATH_ROOT . $category['avata_cate'])
+            $category['image']
+            && file_exists(PATH_ROOT . $category['image'])
         ) {
-            unlink(PATH_ROOT . $category['avata_cate']);
+            unlink(PATH_ROOT . $category['image']);
         }
 
         header('Location: ' . url('admin/categorys'));
@@ -65,7 +65,7 @@ class CategoryController extends Controller
         $validator = new Validator;
         $validation = $validator->make($_POST + $_FILES, [
             'name' => 'required|max:50',
-            'avata_cate' => 'uploaded_file:0,2M,jpg,jpeg',
+            'image' => 'uploaded_file:0,2M,jpg,jpeg',
 
         ]);
 
@@ -84,16 +84,16 @@ class CategoryController extends Controller
                
             ];
             //    helper::debug($_FILES);
-            if (!empty($_FILES['avata_cate']) && $_FILES['avata_cate']['size'] > 0) {
-                $from = $_FILES['avata_cate']['tmp_name'];
-                $to = 'assets/uploads/' . time() . $_FILES['avata_cate']['name'];
+            if (!empty($_FILES['image']) && $_FILES['image']['size'] > 0) {
+                $from = $_FILES['image']['tmp_name'];
+                $to = 'assets/uploads/' . time() . $_FILES['image']['name'];
 
                 if (move_uploaded_file($from, PATH_ROOT . $to)) {
 
-                    $data['avata_cate'] = $to;
+                    $data['image'] = $to;
                 } else {
 
-                    $_SESSION['errors']['avata_cate'] = 'không thành công ';
+                    $_SESSION['errors']['image'] = 'không thành công ';
                     header('location: ' . url('admin/categorys/create'));
                     exit;
                 }
@@ -123,7 +123,7 @@ class CategoryController extends Controller
         $validation = $validator->make($_POST + $_FILES, [
             'name'                  => 'required|max:50',
            
-            'avata_cate'                => 'uploaded_file:0,2M,png,jpg,jpeg',
+            'image'                => 'uploaded_file:0,2M,png,jpg,jpeg',
            
         ]);
         $validation->validate();
@@ -140,17 +140,17 @@ class CategoryController extends Controller
             ];
 
             $flagUpload = false;
-            if (isset($_FILES['avata_cate']) && $_FILES['avata_cate']['size'] > 0) {
+            if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
 
                 $flagUpload = true;
 
-                $from = $_FILES['avata_cate']['tmp_name'];
-                $to = 'assets/uploads/' . time() . $_FILES['avata_cate']['name'];
+                $from = $_FILES['image']['tmp_name'];
+                $to = 'assets/uploads/' . time() . $_FILES['image']['name'];
 
                 if (move_uploaded_file($from, PATH_ROOT . $to)) {
-                    $data['avata_cate'] = $to;
+                    $data['image'] = $to;
                 } else {
-                    $_SESSION['errors']['avata_cate'] = 'Upload Không thành công';
+                    $_SESSION['errors']['image'] = 'Upload Không thành công';
 
                     header('Location: ' . url("admin/categorys/{$category['id']}/edit"));
                     exit;
@@ -161,10 +161,10 @@ class CategoryController extends Controller
 
             if (
                 $flagUpload
-                && $category['avata_cate']
-                && file_exists(PATH_ROOT . $category['avata_cate'])
+                && $category['image']
+                && file_exists(PATH_ROOT . $category['image'])
             ) {
-                unlink(PATH_ROOT . $category['avata_cate']);
+                unlink(PATH_ROOT . $category['image']);
             }
 
             $_SESSION['status'] = true;

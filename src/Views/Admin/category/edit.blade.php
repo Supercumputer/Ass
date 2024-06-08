@@ -44,8 +44,8 @@ Danh muc
             </div>
             <div class="col-md-4">
                 <label for="formFile" class="form-label">Hình ảnh</label>
-                <input type="file" class="form-control" id="avatar" placeholder="Enter avatar" name="avata_cate">
-                <img src="{{ asset($category['avata_cate']) }}" alt="" width="100px">
+                <input type="file" class="form-control" id="avatar" placeholder="Enter avatar" name="image">
+                <img src="{{ asset($category['image']) }}" alt="" width="100px">
             </div>
             <div class="box_btn">
                 <button type="submit" class="btn btn-primary">Cập nhật</button>
