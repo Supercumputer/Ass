@@ -20,6 +20,7 @@ class Product extends Model
                 'p.updated_at',
                 'c.name as c_name'
             )
+            
             ->from($this->tableName, 'p')
             ->innerJoin('p', 'categories', 'c', 'c.id = p.category_id')
             ->orderBy('p.id', 'desc')

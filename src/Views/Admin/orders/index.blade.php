@@ -30,14 +30,14 @@
                         <th scope="col" class="check_column">
                             <input class="form-check-input" name="input_all" type="checkbox" value="">
                         <th>
-                        <th scope="col">ID</th>
-                        <th scope="col" class="customer_column">Khách hàng</th>
+
+                        <th scope="col">Mã Đơn</th>
+                        <th scope="col">Khách hàng</th>
                         <th scope="col">Ngày tạo</th>
-                        <th scope="col">Tạm tính</th>
-                        <th scope="col">Mã giảm giá</th>
-                        <th scope="col">Tổng</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col" class="action_column_dh">Action</th>
+                        <th scope="col">Trạng thái thanh toán</th>
+                        <th scope="col">Trạng thái Giao</th>
+                        <th scope="col">Hành động</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -46,8 +46,10 @@
                             <th scope="col">
                                 <input class="form-check-input" name="input_item" type="checkbox" value="<?= $order_id ?>">
                             <th>
+
                             <td scope="row">{{ $item['id'] }}</td>
-                            <td style="width: 300px;">
+
+                            <td>
                                 <div class="d-flex flex-column">
                                     <span>{{ $item['user_name'] ?? $item['shipping_name'] }}</span>
                                     <span>{{ $item['user_email'] ?? $item['shipping_email'] }}</span>
@@ -57,29 +59,44 @@
                             </td>
 
                             <td>{{ $item['created_at'] }}</td>
-                            <td><?= number_format(1000, 0, '', '.') ?></td>
-                            <td>Không có</td>
-                            <td><?= number_format(2000, 0, '', '.') ?></td>
+
+                            <td>{{ $item['status_payment'] === 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
+
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+                                    <button id="btnGroupDrop1" type="button"
+                                        class="btn {{ $item['status_delivery'] == 0 ? 'btn-secondary' : ($item['status_delivery'] == 3 ? 'btn-success' : ($item['status_delivery'] == 5 || $item['status_delivery'] == 4 ? 'btn-danger' : 'btn-primary')) }} dropdown-toggle"
                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ $item['status_delivery'] == 0 ? 'Đang chờ xác nhận' : ($item['status_delivery'] == 1 ? 'Đang giao hàng' : ($item['status_delivery'] == 2 ? 'Đã giao hàng' : ($item['status_delivery'] == 3 ? 'Đã nhận hàng' : ($item['status_delivery'] == 4 ? 'Đã hủy' : 'Hoàn thành')))) }}
+                                        {{ $item['status_delivery'] == 0 ? 'Chờ xác nhận' : ($item['status_delivery'] == 1 ? 'Chờ lấy hàng' : ($item['status_delivery'] == 2 ? 'Chờ giao hàng' : ($item['status_delivery'] == 3 ? 'Đã giao hàng' : ($item['status_delivery'] == 4 ? 'Đã hủy' : 'Trả hàng')))) }}
 
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <li><a class="dropdown-item" href="{{url('admin/orders/0/update')}}">Đang chờ xác nhận</a></li>
-                                        <li><a class="dropdown-item" href="{{url('admin/orders/1/update')}}">Đang Giao hàng</a></li>
-                                        <li><a class="dropdown-item" href="{{url('admin/orders/2/update')}}">Đã Giao hàng</a></li>
-                                        <li><a class="dropdown-item" href="{{url('admin/orders/3/update')}}">Đã nhận hàng</a></li>
-                                        <li><a class="dropdown-item" href="{{url('admin/orders/4/update')}}">Đã hủy</a></li>
-                                        <li><a class="dropdown-item" href="{{url('admin/orders/5/update')}}">Thành công</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{{ url('admin/orders/' . $item['id'] . '/update?status_delivery=0') }}">Chờ
+                                                xác nhận</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{{ url('admin/orders/' . $item['id'] . '/update?status_delivery=1') }}">Chờ
+                                                lấy hàng</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{{ url('admin/orders/' . $item['id'] . '/update?status_delivery=2') }}">Chờ
+                                                giao hàng</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{{ url('admin/orders/' . $item['id'] . '/update?status_delivery=3') }}">Đã
+                                                giao hàng</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{{ url('admin/orders/' . $item['id'] . '/update?status_delivery=4') }}">Đã
+                                                hủy</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{{ url('admin/orders/' . $item['id'] . '/update?status_delivery=5') }}">Trả
+                                                hàng</a></li>
                                     </ul>
                                 </div>
                             </td>
+                            
                             </td>
                             <td>
-                                <a class="btn btn-info" href="{{ url('admin/orders/' . $item['id']) . '/show' }}">Xem</a>
+                                <a class="btn btn-info text-white"
+                                    href="{{ url('admin/orders/' . $item['id']) . '/show' }}">Xem</a>
                             </td>
                         </tr>
                     @endforeach
