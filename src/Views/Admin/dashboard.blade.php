@@ -87,8 +87,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($users as $user)
-    
+                    @foreach ($user_view as $user)
                         <tr>
                             <td><?= $user['id'] ?></td>
                             <td>

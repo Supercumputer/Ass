@@ -4,6 +4,7 @@ namespace Myasus\Assigment\Controllers\Admin;
 
 
 use Myasus\Assigment\Commons\Controller;
+use Myasus\Assigment\Commons\Helper;
 use Myasus\Assigment\Models\User;
 use Rakit\Validation\Validator;
 
@@ -21,7 +22,9 @@ class UserController extends Controller{
         $this->renderViewAdmin('users.index', [
             'users' => $users
         ]);
+        
     }
+
 
     public function create()
     {

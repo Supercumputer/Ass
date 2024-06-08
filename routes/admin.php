@@ -42,7 +42,7 @@ $router->mount('/admin', function () use ($router) {
 
 
     // CRUD Catergory
-    $router->mount('/categorys', function () use ($router) {
+    $router->mount('/categories', function () use ($router) {
         $router->get('/', CategoryController::class . '@index');  // Danh sách
         $router->get('/create', CategoryController::class . '@create'); // Show form thêm mới
         $router->post('/store', CategoryController::class . '@store');  // Lưu mới vào DB
