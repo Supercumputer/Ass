@@ -52,8 +52,6 @@ $router->mount('/admin', function () use ($router) {
         $router->get('/{id}/delete', CategoryController::class . '@delete'); // Xóa
     });
 
-
-
     $router->mount('/users', function () use ($router) {
         $router->get('/', UserController::class . '@index');  // Danh sách
         $router->get('/create', UserController::class . '@create'); // Show form thêm mới
@@ -66,8 +64,8 @@ $router->mount('/admin', function () use ($router) {
 
     $router->mount('/orders', function () use ($router) {
         $router->get('/', OrderController::class . '@index');  // Danh sách
-        $router->get('/{id}/show', OrderController::class . '@detail');  // Danh sách
         $router->get('/{id}/update', OrderController::class . '@updateStatus');  // Danh sách
+        $router->get('/{id}/show', OrderController::class . '@detail');  // Danh sách
     });
 });
 
