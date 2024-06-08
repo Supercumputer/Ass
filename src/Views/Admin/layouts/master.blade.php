@@ -37,7 +37,7 @@
 
         <div class="box_right">
 
-            <div class="box_right_top d-flex flex-row-reverse"><a href="/trang_chinh/index.php"><i
+            <div class="box_right_top d-flex flex-row-reverse"><a href="{{ url('') }}"><i
                         class="fa-solid fa-right-from-bracket"></i></a></div>
             <div class="box_right_content col-12 px-3 mt-3">
                 @yield('content')
@@ -47,5 +47,6 @@
         </div>
     </div>
 </body>
+@include('layouts.partials.js')
 
 </html>

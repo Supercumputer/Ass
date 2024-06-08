@@ -26,7 +26,7 @@
     @endif
 
     <div class="box_wap mx-3 py-3">
-        <form action="{{ url('admin/categorys/store') }}"  method="POST" id="form" class="row g-3" enctype="multipart/form-data">
+        <form action="{{ url('admin/categories/store') }}"  method="POST" id="form" class="row g-3" enctype="multipart/form-data">
             <div class="col-md-4">
                 <label for="inputEmail4" class="form-label">Tên danh mục</label>
                 <input type="text" class="form-control" id="inputEmail4" name="name">

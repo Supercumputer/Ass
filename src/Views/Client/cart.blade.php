@@ -94,7 +94,7 @@
             </table>
             <div class="d-flex justify-content-between">
                 <div class="d-flex gap-2 align-items-center">
-                    <a href="<?= $SITE_URL ?>/san_pham/index.php"><button type="button" class="btn btn-primary">Tiếp tục
+                    <a href="{{ url('products') }}"><button type="button" class="btn btn-primary">Tiếp tục
                             mua sắm</button></a>
                     <a href="index.php?don_hang"><button type="button" class="btn btn-success">Lịch sử đơn
                             hàng</button></a>

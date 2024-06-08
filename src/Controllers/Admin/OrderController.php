@@ -22,7 +22,6 @@ class OrderController extends Controller
     {
         $orders = $this->order->all();
 
-        // Helper::debug($orders);
 
         $this->renderViewAdmin('orders.index', ['orders' => $orders]);
     }
@@ -31,19 +30,20 @@ class OrderController extends Controller
     { // Chi tiết giỏ hàng
 
         $orderInfor = $this->order->findByID($id);
-        $orderDetail = $this->orderDetail->findByID($id);
-        // Helper::debug($orderInfor);
-
+        $orderDetails = $this->orderDetail->findByOrderId($id);
 
         $this->renderViewAdmin('orders.order-detail', [
             'orderInfor' => $orderInfor,
-            'orderDetail' => $orderDetail
+            'orderDetail' => $orderDetails
         ]);
     }
 
     public function updateStatus($id)
     {
-        $this->order->updateStatus($id);
+       
+        $status_delivery = $_GET['status_delivery'];
+        
+        $this->order->updateStatus($id,  $status_delivery);
         header('Location: ' . url('admin/orders'));
         exit();
     }

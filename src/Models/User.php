@@ -17,4 +17,15 @@ class User extends Model
             ->setParameter(0, $email)
             ->fetchAssociative();
     }
+
+    public function getTop5MemberNew(){
+        return $this->queryBuilder
+            ->select('*')
+            ->from($this->tableName)
+            ->where('type = ?')
+            ->setParameter(0, 'member')
+            ->orderBy('id', 'desc')
+            ->setMaxResults(5)
+            ->fetchAllAssociative();
+    }
 }

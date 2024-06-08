@@ -8,11 +8,13 @@ class Order extends Model
 {
     protected string $tableName = 'orders';
 
-    public function updateStatus($id){
+    public function updateStatus($orderid, $status_delivery) {
         $this->queryBuilder
         ->update($this->tableName)
         ->set('status_delivery', '?')
-        ->setParameter(0, $id)
+        ->where('id = ?')
+        ->setParameter(0, $status_delivery)
+        ->setParameter(1, $orderid)
         ->executeQuery();
     }
 }
