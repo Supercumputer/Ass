@@ -4,30 +4,44 @@ namespace Myasus\Assigment\Controllers\Client;
 
 use Myasus\Assigment\Commons\Controller;
 use Myasus\Assigment\Commons\Helper;
+use Myasus\Assigment\Models\Category;
 use Myasus\Assigment\Models\Product;
 
 class ProductController extends Controller
 {
     private Product $product;
+    private Category $category;
 
     public function __construct()
     {
         $this->product = new Product();
+        $this->category = new Category();
     }
-    
-    public function index() {
-        [$products, $totalPage] = $this->product->paginate($_GET['page'] ?? 1);
+
+    public function index()
+    {
+        $categorys = $this->category->all();
+
+        $page = $_GET['page'] ?? 1;
+        [$products, $totalPage] = $this->product->paginate($page);
+
         $this->renderViewClient('product', [
+            'categorys' => $categorys,
             'products' => $products,
-            'totalPage' => $totalPage
+            'totalPage' => $totalPage,
+            'page' => $page
         ]);
     }
 
-    public function detail($id) {
-        $product = $this->product->findByID($id);
 
-        $this->renderViewClient('product-detail', [
-            'product' => $product
-        ]);
+    public function detail($id)
+    {
+
+        $productCategory = $this->product->getProductInfor($id);
+
+        // $this->renderViewClient('product-detail', [
+        //     'productInfor' => $productInfor,
+        //     // 'productCategory'=>$productCategory,
+        // ]);
     }
 }
