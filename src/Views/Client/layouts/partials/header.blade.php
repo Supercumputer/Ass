@@ -19,7 +19,7 @@
                             </a>
                         @endif
                     </nav>
-                    
+
                     <div class="d-flex d-flex align-items-center gap-2">
                         <i class="fa-brands fa-product-hunt"></i>
                         <span>Sản phẩm</span>
@@ -91,12 +91,17 @@
                         <i class="fa-solid fa-bars"></i>
                         <p>DANH MỤC SẢN PHẨM</p>
                         <div class="box_dm_po">
+                            @foreach ($categorys as $category)
 
-                            <a href="/san_pham/index.php?keyword=" class="d-flex align-items-center gap-2">
-                                <i class="fa-solid fa-angle-right"></i>
-                                <span>sdffdsf</span>
-                            </a>
+                                <a  href="{{ url('products') }}"  class="d-flex align-items-center gap-2">
+                                    
+                                    <i class="fa-solid fa-angle-right"></i>
 
+                                    <span>{{ $category['name'] }}</span>
+
+
+                                </a>
+                            @endforeach
                         </div>
                     </div>
 

@@ -86,11 +86,13 @@
         <div class="slider_container">
 
             <div class="swiper card_slider">
+           
                 <div class="swiper-wrapper">
+
 
                     @foreach ($categorys as $category)
                         <div class="swiper-slide">
-                            <a href="">
+                            <a  href="{{ url('products') }}">
                                 <div class="img_box">
                                     <img src="{{ asset($category['image']) }}" alt="">
                                 </div>
@@ -103,10 +105,12 @@
 
 
 
+
                 </div>
+       
                 <div class="swiper-button-next arrow arrow-left"></div>
                 <div class="swiper-button-prev arrow arrow-left"></div>
-            </div>
+            </div> 
 
         </div>
 

@@ -10,6 +10,21 @@
 
             <li><a href="/san_pham/index.php?keyword=">ffafafa</a></li>
 
+                @foreach ($categorys as $category)
+                        <div class="swiper-slide">
+                            <a href="">
+                                <div class="img_box">
+                                    <img src="{{ asset($category['image']) }}" alt="">
+                                </div>
+                                <div class="tieudeanh">
+                                    <h5 class="tieudend">{{ $category['name'] }}</h5>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+
+
+
         </ul>
     </div>
 </div>

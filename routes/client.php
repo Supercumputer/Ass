@@ -23,6 +23,11 @@ $router->get('/logout',            LoginController::class    . '@logout');
 $router->get('/products',          ProductController::class    . '@index');
 $router->get('/products/{id}',     ProductController::class    . '@detail');
 
+$router->get('/cart',              CartController::class    . '@index');
+
+
+
+
 
 $router->mount('/cart', function () use ($router) {
     $router->get('/',                   CartController::class .  '@index');

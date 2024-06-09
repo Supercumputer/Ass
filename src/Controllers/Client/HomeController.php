@@ -10,13 +10,12 @@ use Myasus\Assigment\Models\Product;
 class HomeController extends Controller
 {
     private Product $product;
-    private Product $categoryName;
+  
     private Category $category;
     public function __construct()
     {
         $this->product = new Product();
         $this->category = new Category();
-        $this->categoryName = new Product();
     }
 
     public function index()
@@ -24,6 +23,8 @@ class HomeController extends Controller
         $categorys = $this->category->all();
         $top8Product = $this->product->top8ProductHighlight();
         $productByCategory = $this->product->getProductsByCategory(4);
+
+   
         
         $this->renderViewClient('home', [
             'top8Product' => $top8Product,
