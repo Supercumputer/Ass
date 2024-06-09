@@ -25,12 +25,12 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Sản phẩm</th>
-                        <th scope="col">Hình ảnh</th>
-                        <th scope="col">Giá</th>
-                        <th scope="col">Số lượng</th>
-                        <th scope="col">Tổng tiền</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">SẢN PHẨM</th>
+                        <th scope="col">HÌNH ẢNH</th>
+                        <th scope="col">GIÁ</th>
+                        <th scope="col">SỐ LƯỢNG</th>
+                        <th scope="col">TỔNG TIỀN</th>
+                        <th scope="col">HÀNH ĐỘNG</th>
                     </tr>
                 </thead>
                 @if (!empty($_SESSION['cart']) || (!empty($_SESSION['user']) && !empty($_SESSION['cart-' . $_SESSION['user']['id']])))
@@ -50,33 +50,36 @@
                                     {{ number_format($item['price_sale'] ?: $item['price_regular'], 0, '', '.') }}
                                 </td>
                                 <td>
-                                    @php
-                                        $url = url('cart/quantityDec') . '?productID=' . $item['id'];
+                                    <div class="d-flex items-center">
 
-                                        if (
-                                            isset($_SESSION['User']) &&
-                                            isset($_SESSION['User']) &&
-                                            isset($_SESSION['cart-' . $_SESSION['user']['id']])
-                                        ) {
-                                            $url .= '&cartID=' . $_SESSION['cart_id'];
-                                        }
-                                    @endphp
-                                    <a class="btn btn-danger" href="{{ $url }}">Giảm</a>
+                                        @php
+                                            $url = url('cart/quantityDec') . '?productID=' . $item['id'];
 
-                                    {{ $item['quantity'] }}
+                                            if (
+                                                isset($_SESSION['User']) &&
+                                                isset($_SESSION['User']) &&
+                                                isset($_SESSION['cart-' . $_SESSION['user']['id']])
+                                            ) {
+                                                $url .= '&cartID=' . $_SESSION['cart_id'];
+                                            }
+                                        @endphp
+                                        <a class="btn btn-danger" href="{{ $url }}">-</a>
 
-                                    @php
-                                        $url = url('cart/quantityInc') . '?productID=' . $item['id'];
+                                        <p style="padding: 5px 0;width: 35px; text-align: center">{{ $item['quantity'] }}</p>
 
-                                        if (
-                                            isset($_SESSION['User']) &&
-                                            isset($_SESSION['User']) &&
-                                            isset($_SESSION['cart-' . $_SESSION['user']['id']])
-                                        ) {
-                                            $url .= '&cartID=' . $_SESSION['cart_id'];
-                                        }
-                                    @endphp
-                                    <a class="btn btn-primary" href="{{ $url }}">Tăng</a>
+                                        @php
+                                            $url = url('cart/quantityInc') . '?productID=' . $item['id'];
+
+                                            if (
+                                                isset($_SESSION['User']) &&
+                                                isset($_SESSION['User']) &&
+                                                isset($_SESSION['cart-' . $_SESSION['user']['id']])
+                                            ) {
+                                                $url .= '&cartID=' . $_SESSION['cart_id'];
+                                            }
+                                        @endphp
+                                        <a class="btn btn-primary" href="{{ $url }}">+</a>
+                                    </div>
                                 </td>
                                 <td>
                                     {{ number_format($item['quantity'] * ($item['price_sale'] ?: $item['price_regular']), 0, '', '.') }}

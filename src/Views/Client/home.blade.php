@@ -87,69 +87,29 @@
 
             <div class="swiper card_slider">
                 <div class="swiper-wrapper">
-                    
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
 
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
+                    @foreach ($categorys as $category)
+                        <div class="swiper-slide">
+                            <a href="">
+                                <div class="img_box">
+                                    <img src="{{ asset($category['image']) }}" alt="">
+                                </div>
+                                <div class="tieudeanh">
+                                    <h5 class="tieudend">{{ $category['name'] }}</h5>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
 
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
 
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
 
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/san_pham/index.php?keyword=">
-                            <div class="img_box">
-                                <img src="{{asset('assets/client/img/slider_1.jpg')}}" alt="">
-                            </div>
-                            <div class="tieudeanh">
-                                <h5 class="tieudend">kkkkkk</h5>
-                            </div>
-                        </a>
-
-                    </div>
-                    
                 </div>
                 <div class="swiper-button-next arrow arrow-left"></div>
                 <div class="swiper-button-prev arrow arrow-left"></div>
             </div>
 
         </div>
+
     </div>
 
     <div class="box_content py-3">
@@ -161,73 +121,23 @@
             </div>
         </div>
         <div class="row">
-            
-            <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                <a href="/san_pham/index.php?san_pham_chi_tiet="
-                    class="box_sp d-flex flex-column">
-                    <div class="box_img_sp d-flex justify-content-center">
-                        <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
-                    </div>
-                    <h1 class="title">hdsf dfkjsdfj  fsdiufsdf</h1>
-                    <span><?= number_format(10000, 0, '', '.') ?> VNĐ</span>
-                </a>
-            </div>
-            
-            <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                <a href="/san_pham/index.php?san_pham_chi_tiet="
-                    class="box_sp d-flex flex-column">
-                    <div class="box_img_sp d-flex justify-content-center">
-                        <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
-                    </div>
-                    <h1 class="title">hdsf dfkjsdfj  fsdiufsdf</h1>
-                    <span><?= number_format(10000, 0, '', '.') ?> VNĐ</span>
-                </a>
-            </div>
-
-            <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                <a href="/san_pham/index.php?san_pham_chi_tiet="
-                    class="box_sp d-flex flex-column">
-                    <div class="box_img_sp d-flex justify-content-center">
-                        <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
-                    </div>
-                    <h1 class="title">hdsf dfkjsdfj  fsdiufsdf</h1>
-                    <span><?= number_format(10000, 0, '', '.') ?> VNĐ</span>
-                </a>
-            </div>
-
-            <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                <a href="/san_pham/index.php?san_pham_chi_tiet="
-                    class="box_sp d-flex flex-column">
-                    <div class="box_img_sp d-flex justify-content-center">
-                        <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
-                    </div>
-                    <h1 class="title">hdsf dfkjsdfj  fsdiufsdf</h1>
-                    <span><?= number_format(10000, 0, '', '.') ?> VNĐ</span>
-                </a>
-            </div>
-
-            <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                <a href="/san_pham/index.php?san_pham_chi_tiet="
-                    class="box_sp d-flex flex-column">
-                    <div class="box_img_sp d-flex justify-content-center">
-                        <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
-                    </div>
-                    <h1 class="title">hdsf dfkjsdfj  fsdiufsdf</h1>
-                    <span><?= number_format(10000, 0, '', '.') ?> VNĐ</span>
-                </a>
-            </div>
-
-            <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                <a href="/san_pham/index.php?san_pham_chi_tiet="
-                    class="box_sp d-flex flex-column">
-                    <div class="box_img_sp d-flex justify-content-center">
-                        <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
-                    </div>
-                    <h1 class="title">hdsf dfkjsdfj  fsdiufsdf</h1>
-                    <span><?= number_format(10000, 0, '', '.') ?> VNĐ</span>
-                </a>
-            </div>
-
+            @foreach ($top8Product as $item)
+                <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
+                    <a href="{{ url('products/' . $item['id']) }}" class="box_sp d-flex flex-column">
+                        <div class="box_img_sp d-flex justify-content-center">
+                            <img
+                            style=
+                            "width: 200px";
+                            height="200px";
+                            object-fit:cover;
+                            ;
+                            src="{{ asset($item['img_thumbnail']) }}" alt="">
+                        </div>
+                        <h1 class="title">{{ $item['name'] }}</h1>
+                        <span>{{ number_format($item['price_regular'], 0, '', '.') }} VNĐ</span>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 
@@ -256,18 +166,20 @@
             </div>
         </div>
         <div class="row">
-          
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                <a href="<?= $SITE_URL ?>/san_pham/index.php?san_pham_chi_tiet="
-                    class="box_sp d-flex flex-column">
+            @foreach ($productByCategory as $item)
+            <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
+                <a href="" class="box_sp d-flex flex-column">
                     <div class="box_img_sp d-flex justify-content-center">
-                        <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
+
+                        <img src="{{ asset($item['img_thumbnail']) }}" alt="">
+
                     </div>
-                    <h1 class="title">dgdfgdfgdf</h1>g
-                    <span><?= number_format(100000, 0, '', '.') ?> VNĐ</span>
+                    <h1 class="title">{{ $item['name'] }}</h1>
+                    <span>{{ number_format($item['price_regular'], 0, '', '.') }} VNĐ</span>
                 </a>
             </div>
-           
+            @endforeach
+
         </div>
     </div>
 
@@ -286,7 +198,7 @@
 
             <div class="swiper card_slider">
                 <div class="swiper-wrapper align-items-center">
-                   
+
                     <div class="swiper-slide">
                         <div class="d-flex justify-content-center">
                             <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
@@ -307,7 +219,7 @@
                             <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="swiper-button-next  arrow-left"></div>
                 <div class="swiper-button-prev arrow-left "></div>

@@ -14,23 +14,29 @@ class ProductController extends Controller
     {
         $this->product = new Product();
     }
-    
-    public function index() {
-        [$products, $totalPage] = $this->product->paginate($_GET['page'] ?? 1);
+
+    public function index()
+    {
+
+        $page = $_GET['page'] ?? 1;
+        [$products, $totalPage] = $this->product->paginate($page);
+
         $this->renderViewClient('product', [
             'products' => $products,
-            'totalPage' => $totalPage
+            'totalPage' => $totalPage,
+            'page' => $page
         ]);
     }
 
-    public function detail($id) {
-        $product = $this->product->findByID($id);
 
-        $this->renderViewClient('product-detail', [
-            'product' => $product
-        ]);
+    public function detail($id)
+    {
+
+        $productCategory = $this->product->getProductInfor($id);
+
+        // $this->renderViewClient('product-detail', [
+        //     'productInfor' => $productInfor,
+        //     // 'productCategory'=>$productCategory,
+        // ]);
     }
-
-    
-
 }
