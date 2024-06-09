@@ -23,7 +23,7 @@ $router->get('/products/{id}',     ProductController::class    . '@detail');
 $router->get('/cart',              CartController::class    . '@index');
 
 
-=======
+
 
 
 $router->get('/cart',              CartController::class . '@index');
@@ -32,8 +32,4 @@ $router->get('cart/quantityInc',   CartController::class . '@quantityInc');
 $router->get('cart/quantityDec',   CartController::class . '@quantityDec');
 $router->get('cart/remove',        CartController::class . '@remove');
 $router->get('cart/detail',        CartController::class . '@detail');
-<<<<<<< HEAD
->>>>>>> 8961eb2bf4c51bd5b608a76c436e422ab380a92d
-=======
 
->>>>>>> a1935b0511338272bfab759f3a7fe0a6dd43d599
