@@ -26,11 +26,11 @@ class CartController extends Controller
     }
 
     public function add()
-    {
+    { 
 
         $product = $this->product->findByID($_GET['productID']);
 
-
+       
         $key = 'cart';
 
         if (isset($_SESSION['user'])) {
@@ -45,14 +45,15 @@ class CartController extends Controller
             $_SESSION[$key][$product['id']]['quantity'] += $_GET['quantity'];
         }
 
-
+        
         if (isset($_SESSION['user'])) {
             $conn = $this->cart->getConnection();
 
 
+            // $conn->beginTransaction();
 
-
-
+=======
+>>>>>>> c077c54b2cf22d2bf63a42f38c1c39a3b412d9d8
             try {
 
                 $cart = $this->cart->findByUserID($_SESSION['user']['id']);
@@ -76,10 +77,13 @@ class CartController extends Controller
                         'quantity' => $item['quantity']
                     ]);
                 }
+
+
+               
             } catch (\Throwable $th) {
                 // echo $th->getMessage();die;
                 //throw $th;
-
+               
 
             }
         }
