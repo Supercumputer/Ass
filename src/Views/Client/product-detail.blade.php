@@ -35,15 +35,21 @@
 
                         </div>
 
-
                         <p class="mn">Số lượng:</p>
-                        <form action="{{ url('cart/add') }}" method="get">
-                            <input type="hidden" name="productID" value="{{ $product['id'] }}">
-                            <input type="number" min="1" name="quantity" value="1">
-                            <div class="mt-4">
-                                <button type="submit" class="btn btn-success btn-lg" name="mua_ngay">Mua ngay</button>
 
-                                <button type="submit" class="btn btn-danger btn-lg" name="add_cart">Thêm vào giỏ
+                        <form action="{{ url('cart/add') }}" method="get">
+                            <div class=" d-flex">
+                                <input type="button" class="decrease" value="-">
+                                <input type="text" class="quantity-input text-center" name="quantity" value="1"
+                                    min="1" step="1">
+                                <input type="button" class="increase" value="+">
+                                <input type="hidden" name="productID" value="{{ $productInfor['id'] }}">
+                            </div>
+
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-success btn-lg">Mua ngay</button>
+
+                                <button type="submit" class="btn btn-danger btn-lg">Thêm vào giỏ
                                     hàng</button>
                             </div>
                         </form>
@@ -100,6 +106,5 @@
         </div>
 
     </div>
-    <script></script>
-    </script>
+    
 @endsection

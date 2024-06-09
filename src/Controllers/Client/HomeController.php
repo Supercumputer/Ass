@@ -19,15 +19,17 @@ class HomeController extends Controller
         $this->categoryName = new Product();
     }
 
+
     public function index()
     {
         $categorys = $this->category->all();
         $top8Product = $this->product->top8ProductHighlight();
-         $productByCategory = $this->product->getProductsByCategory(4);
+        $productByCategory = $this->product->getProductsByCategory(4);
+        
         $this->renderViewClient('home', [
             'top8Product' => $top8Product,
-            'categorys'=> $categorys,
-            'productByCategory' =>$productByCategory,
+            'categorys' => $categorys,
+            'productByCategory' => $productByCategory,
         ]);
     }
 }

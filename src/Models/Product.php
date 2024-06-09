@@ -1,5 +1,8 @@
-<?php 
+<?php
+
 namespace Myasus\Assigment\Models;
+
+use Myasus\Assigment\Commons\Helper;
 use Myasus\Assigment\Commons\Model;
 
 class Product extends Model
@@ -20,14 +23,14 @@ class Product extends Model
                 'p.updated_at',
                 'c.name as c_name'
             )
-            
+
             ->from($this->tableName, 'p')
             ->innerJoin('p', 'categories', 'c', 'c.id = p.category_id')
             ->orderBy('p.id', 'desc')
             ->fetchAllAssociative();
     }
 
-    public function paginate($page = 1, $perPage = 5)
+    public function paginate($page = 1, $perPage = 8)
     {
         $queryBuilder = clone ($this->queryBuilder);
 
@@ -80,39 +83,41 @@ class Product extends Model
             ->fetchAssociative();
     }
 
-    public function top8ProductHighlight(){
-        return $this->queryBuilder
-        ->select('*')
-        ->from($this->tableName)
-        ->orderBy('view', 'desc')  // Sắp xếp theo trường view giảm dần
-        ->setMaxResults(8)          // Giới hạn 8 bản ghi
-        ->fetchAllAssociative();
-
-    }
-
-
-    public function getProductsByCategory($categoryId){
+    public function top8ProductHighlight()
+    {
         return $this->queryBuilder
             ->select('*')
             ->from($this->tableName)
-            ->where('category_id = ?')  // Lọc theo danh mục với dấu ?
-            ->setParameter(0, $categoryId)  // Đặt giá trị cho tham số với chỉ số 0
+            ->orderBy('view', 'desc')  // Sắp xếp theo trường view giảm dần
+            ->setMaxResults(8)          // Giới hạn 8 bản ghi
             ->fetchAllAssociative();
     }
-    
-    public function getRelatedProducts($categoryId) {
-        return $this->queryBuilder
+
+
+    // public function getProductsByCategory($categoryId){
+    //     return $this->queryBuilder
+    //         ->select('*')
+    //         ->from($this->tableName)
+    //         ->where('category_id = ?')  // Lọc theo danh mục với dấu ?
+    //         ->setParameter(0, $categoryId)  // Đặt giá trị cho tham số với chỉ số 0
+    //         ->fetchAllAssociative();
+    // }
+
+    public function getProductInfor($id)
+    {
+
+        $queryBuilder = clone ($this->queryBuilder);
+
+        $productInfor = $this->findByID($id);
+
+        $productByCatgory = $queryBuilder
             ->select('*')
             ->from($this->tableName)
-            ->where('category_id = ?') // Thêm tên cột trong điều kiện WHERE
-            ->setParameter(0, $categoryId)
+            ->where('category_id = ?')
+            ->setParameter(0, $productInfor['category_id'])
+            ->orderBy('id', 'desc')
             ->fetchAllAssociative();
+
+        return [$productInfor, $productByCatgory];
     }
-    
-    
-    
-    
-    
-    
 }
-?>
