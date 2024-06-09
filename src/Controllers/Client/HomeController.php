@@ -11,6 +11,7 @@ class HomeController extends Controller
 {
     private Product $product;
     private Product $categoryName;
+   
     private Category $category;
     public function __construct()
     {
@@ -25,6 +26,8 @@ class HomeController extends Controller
         $categorys = $this->category->all();
         $top8Product = $this->product->top8ProductHighlight();
         $productByCategory = $this->product->getProductsByCategory(4);
+
+        // Helper::debug($categorys);
         
         $this->renderViewClient('home', [
             'top8Product' => $top8Product,
@@ -32,4 +35,5 @@ class HomeController extends Controller
             'productByCategory' => $productByCategory,
         ]);
     }
+
 }

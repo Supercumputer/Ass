@@ -128,6 +128,49 @@ Home
                 @endforeach
             </div>
 
+            <div class="col-xl-9 mb-3">
+                <div class="row">
+
+                    @foreach ($products as $product)
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
+                            <div href="{{ url('products/' . $product['id']) }}" class="box_sp d-flex flex-column">
+                                <a href="{{ url('products/' . $product['id']) }}"
+                                    class="box_img_sp d-flex justify-content-center">
+                                    <img src="{{ asset($product['img_thumbnail']) }}" alt="">
+                                </a>
+                                <h1 class="title">{{ $product['name'] }}</h1>
+                                <span>{{ number_format($product['price_regular'], 0, '', '.') }} VNĐ</span>
+                                <a href="{{ url('cart/add') }}?quantity=1&productID={{ $product['id'] }}"
+                                    class="btn btn-danger mx-2 mb-2">Thêm vào giỏ hàng
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                @if ($totalPage > 1)
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                @if ($page > 1)
+                                    <li class="page-item">
+                                        <a class="page-link linkm" href="{{ url('products') }}?page={{ $page - 1 }}">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                <?php for($i = 1 ; $i <= $totalPage ; $i++) : ?>
+
+                                <li class="page-item"><a class="page-link linkm"
+                                        href="{{ url('products') }}?page={{ $i }}"><?= $i ?></a>
+                                </li>
+
+                                <?php endfor ?>
+
+                                <?php if($page < $totalPage) : ?>
+
+
 
             @if ($totalPage > 1)
                 <div class="d-flex justify-content-center">

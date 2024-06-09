@@ -48,7 +48,7 @@ class CartController extends Controller
         if (isset($_SESSION['user'])) {
             $conn = $this->cart->getConnection();
 
-            // $conn->beginTransaction();
+            $conn->beginTransaction();
 
             try {
 
@@ -74,10 +74,10 @@ class CartController extends Controller
                     ]);
                 }
 
-                // $conn->commit();
+                $conn->commit();
             } catch (\Throwable $th) {
 
-                // $conn->rollBack();
+                $conn->rollBack();
             }
         }
 

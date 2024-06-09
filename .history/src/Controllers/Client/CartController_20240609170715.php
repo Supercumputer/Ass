@@ -77,7 +77,7 @@ class CartController extends Controller
                 // $conn->commit();
             } catch (\Throwable $th) {
 
-                // $conn->rollBack();
+                $conn->rollBack();
             }
         }
 
