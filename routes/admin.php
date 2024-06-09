@@ -22,6 +22,20 @@ use Myasus\Assigment\Controllers\Admin\ProductController;
 use Myasus\Assigment\Controllers\Admin\OrderController;
 use Myasus\Assigment\Controllers\Admin\UserController;
 
+$router->before('GET|POST', '/admin/*.*', function() {
+
+    if (!is_logged()) {
+        header('location: ' . url('login') );
+        exit();
+    } 
+
+    if (!is_admin()) {
+        header('location: ' . url() );
+        exit();
+    }
+    
+});
+
 
 $router->mount('/admin', function () use ($router) {
 
