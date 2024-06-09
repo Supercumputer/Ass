@@ -60,7 +60,7 @@
 
                             <td>{{ $item['created_at'] }}</td>
 
-                            <td>{{ $item['status_payment'] === 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
+                            <td class="{{$item['status_payment'] === 0 ? 'text-danger' : 'text-success'}} font-weight-bold"><p>{{ $item['status_payment'] === 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</p></td>
 
                             <td>
                                 <div class="btn-group" role="group">
@@ -104,6 +104,40 @@
 
                 </tbody>
             </table>
+
+            @if ($totalPage > 1)
+                    <div class="d-flex justify-content-end">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                @if ($page > 1)
+                                    <li class="page-item">
+                                        <a class="page-link linkm" href="{{ url('admin/orders') }}?page={{ $page - 1 }}">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                <?php for($i = 1 ; $i <= $totalPage ; $i++) : ?>
+
+                                <li class="page-item"><a class="page-link linkm"
+                                        href="{{ url('admin/orders') }}?page={{ $i }}"><?= $i ?></a>
+                                </li>
+
+                                <?php endfor ?>
+
+                                <?php if($page < $totalPage) : ?>
+
+                                <li class="page-item">
+                                    <a class="page-link linkm" href="{{ url('admin/orders') }}?page={{ $page + 1 }}">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+
+                                <?php endif ?>
+                            </ul>
+                        </nav>
+                    </div>
+                @endif
         </div>
 
     </div>

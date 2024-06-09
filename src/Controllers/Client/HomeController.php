@@ -19,7 +19,6 @@ class HomeController extends Controller
         $this->categoryName = new Product();
     }
 
-
     public function index()
     {
         $categorys = $this->category->all();
@@ -28,8 +27,9 @@ class HomeController extends Controller
         
         $this->renderViewClient('home', [
             'top8Product' => $top8Product,
-            'categorys' => $categorys,
-            'productByCategory' => $productByCategory,
+            'categorys'=> $categorys,
+            'productByCategory' =>$productByCategory,
         ]);
     }
+
 }

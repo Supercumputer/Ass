@@ -26,10 +26,11 @@ class CartController extends Controller
     }
 
     public function add()
-    {
+    { 
 
         $product = $this->product->findByID($_GET['productID']);
 
+       
         $key = 'cart';
 
         if (isset($_SESSION['user'])) {
@@ -44,11 +45,9 @@ class CartController extends Controller
             $_SESSION[$key][$product['id']]['quantity'] += $_GET['quantity'];
         }
 
-
+        
         if (isset($_SESSION['user'])) {
             $conn = $this->cart->getConnection();
-
-            $conn->beginTransaction();
 
             try {
 
@@ -74,10 +73,11 @@ class CartController extends Controller
                     ]);
                 }
 
-                $conn->commit();
+               
             } catch (\Throwable $th) {
-
-                $conn->rollBack();
+                // echo $th->getMessage();die;
+                //throw $th;
+               
             }
         }
 

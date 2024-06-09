@@ -20,10 +20,14 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = $this->order->all();
+        $page = $_GET['page'] ?? 1;
+        [$orders, $totalPage] = $this->order->paginate($page);
 
-
-        $this->renderViewAdmin('orders.index', ['orders' => $orders]);
+        $this->renderViewAdmin('orders.index', [
+            'page' => $page,
+            'orders' => $orders,
+            'totalPage' => $totalPage
+        ]);
     }
 
     public function detail($id)
@@ -40,9 +44,9 @@ class OrderController extends Controller
 
     public function updateStatus($id)
     {
-       
+
         $status_delivery = $_GET['status_delivery'];
-        
+
         $this->order->updateStatus($id,  $status_delivery);
         header('Location: ' . url('admin/orders'));
         exit();

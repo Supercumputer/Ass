@@ -44,7 +44,7 @@
                 </a>
 
             </div>
-            <a href="/trang_chinh/index.php">
+            <a href="{{url('')}}">
                 <div class="box_img"><img src="{{ asset('assets/client/img/logo.png') }}" alt=""></div>
             </a>
             <div class="d-none d-md-block">

@@ -94,14 +94,14 @@ class Product extends Model
     }
 
 
-    // public function getProductsByCategory($categoryId){
-    //     return $this->queryBuilder
-    //         ->select('*')
-    //         ->from($this->tableName)
-    //         ->where('category_id = ?')  // Lọc theo danh mục với dấu ?
-    //         ->setParameter(0, $categoryId)  // Đặt giá trị cho tham số với chỉ số 0
-    //         ->fetchAllAssociative();
-    // }
+    public function getProductsByCategory($categoryId){
+        return $this->queryBuilder
+            ->select('*')
+            ->from($this->tableName)
+            ->where('category_id = ?')  // Lọc theo danh mục với dấu ?
+            ->setParameter(0, $categoryId)  // Đặt giá trị cho tham số với chỉ số 0
+            ->fetchAllAssociative();
+    }
 
     public function getProductInfor($id)
     {

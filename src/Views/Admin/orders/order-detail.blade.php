@@ -63,7 +63,7 @@
                         <tr style="vertical-align: middle;">
                             <td scope="row">{{ $item['id'] }}</td>
                             <td><span class="title">{{ $item['name'] }}</span></td>
-                            <td><img src="{{ asset($item['img_thumbnail']) }}" width="80" alt=""></td>
+                            <td><img src="{{ asset($item['img_thumbnail']) }}" width="100" height="100" style="object-fit: cover" alt=""></td>
                             <td>{{ number_format($item['price_regular'], 0, '', '.') }}</td>
                             <td>{{ isset($item['price_sale']) ? number_format($item['price_sale'], 0, '', '.') : 'Không có' }}</td>
 

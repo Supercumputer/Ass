@@ -65,7 +65,8 @@
                                         @endphp
                                         <a class="btn btn-danger" href="{{ $url }}">-</a>
 
-                                        <p style="padding: 5px 0;width: 35px; text-align: center">{{ $item['quantity'] }}</p>
+                                        <p style="padding: 5px 0;width: 35px; text-align: center">{{ $item['quantity'] }}
+                                        </p>
 
                                         @php
                                             $url = url('cart/quantityInc') . '?productID=' . $item['id'];
