@@ -3,6 +3,7 @@
 namespace Myasus\Assigment\Controllers\Client;
 
 use Myasus\Assigment\Commons\Controller;
+use Myasus\Assigment\Commons\Helper;
 use Myasus\Assigment\Models\Cart;
 use Myasus\Assigment\Models\CartDetail;
 use Myasus\Assigment\Models\Product;
@@ -12,6 +13,13 @@ class CartController extends Controller
     private Product $product;
     private Cart $cart;
     private CartDetail $cartDetail;
+
+    public function __construct()
+    {
+        $this->product = new Product();
+        $this->cart = new Cart();
+        $this->cartDetail = new CartDetail();
+    }
     public function index()
     {
         $this->renderViewClient('cart', []);
@@ -36,7 +44,7 @@ class CartController extends Controller
             $_SESSION[$key][$product['id']]['quantity'] += $_GET['quantity'];
         }
 
-        // Nếu mà nó đăng nhập thì mình phải lưu n vào trong csdl
+
         if (isset($_SESSION['user'])) {
             $conn = $this->cart->getConnection();
 
@@ -73,7 +81,7 @@ class CartController extends Controller
             }
         }
 
-        header('Location: ' . url('cart/detail'));
+        header('Location: ' . url('cart'));
         exit;
     }
 
@@ -87,7 +95,7 @@ class CartController extends Controller
 
         $_SESSION[$key][$_GET['productID']]['quantity'] += 1;
 
-        
+
         if (isset($_SESSION['user'])) {
             $this->cartDetail->updateByCartIDAndProductID(
                 $_GET['cartID'],
@@ -96,7 +104,7 @@ class CartController extends Controller
             );
         }
 
-        header('Location: ' . url('cart/detail'));
+        header('Location: ' . url('cart'));
         exit;
     }
 
@@ -117,31 +125,59 @@ class CartController extends Controller
         // Thay đổi trong DB
         if (isset($_SESSION['user'])) {
             $this->cartDetail->updateByCartIDAndProductID(
-                $_GET['cartID'], 
-                $_GET['productID'], 
+                $_GET['cartID'],
+                $_GET['productID'],
                 $_SESSION[$key][$_GET['productID']]['quantity']
             );
         }
 
-        header('Location: ' . url('cart/detail'));
+        header('Location: ' . url('cart'));
         exit;
     }
 
     public function remove()
-    { // xóa item or xóa trắng
+    {
         $key = 'cart';
         if (isset($_SESSION['user'])) {
             $key .= '-' . $_SESSION['user']['id'];
         }
 
-        unset($_SESSION[$key][$_GET['productID']]);
+        if (isset($_GET['productID'])) {
+            // Xóa một sản phẩm cụ thể
+            unset($_SESSION[$key][$_GET['productID']]);
 
-        if (isset($_SESSION['user'])) {
-            $this->cartDetail->deleteByCartIDAndProductID($_GET['cartID'], $_GET['productID']);
+            if (isset($_SESSION['user'])) {
+                $this->cartDetail->deleteByCartIDAndProductID($_GET['cartID'], $_GET['productID']);
+            }
+        } else {
+            // Xóa toàn bộ giỏ hàng
+            unset($_SESSION[$key]);
+
+            if (isset($_SESSION['user'])) {
+                $this->cartDetail->deleteByCartID($_GET['cartID']);
+            }
         }
 
-        header('Location: ' . url('cart/detail'));
+        header('Location: ' . url('cart'));
         exit;
     }
+
+    // public function remove()
+    // { // xóa item or xóa trắng
+    //     $key = 'cart';
+    //     if (isset($_SESSION['user'])) {
+    //         $key .= '-' . $_SESSION['user']['id'];
+    //     }
+
+    //     unset($_SESSION[$key][$_GET['productID']]);
+
+    //     if (isset($_SESSION['user'])) {
+    //         $this->cartDetail->deleteByCartIDAndProductID($_GET['cartID'], $_GET['productID']);
+    //     }
+
+    //     header('Location: ' . url('cart/detail'));
+    //     exit;
+    // }
+
 
 }

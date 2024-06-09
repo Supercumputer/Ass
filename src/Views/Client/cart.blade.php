@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Home
+    Cart
 @endsection
 
 @section('content')
@@ -28,86 +28,105 @@
                         <th scope="col">Sản phẩm</th>
                         <th scope="col">Hình ảnh</th>
                         <th scope="col">Giá</th>
-                        <th scope="col">Màu</th>
-                        <th scope="col">Kích thước</th>
                         <th scope="col">Số lượng</th>
                         <th scope="col">Tổng tiền</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                @if (!empty($_SESSION['cart']) || (!empty($_SESSION['user']) && !empty($_SESSION['cart-' . $_SESSION['user']['id']])))
+                    <tbody>
 
-                    <?php
-                    $sum_price = 0;
-                    if (empty($_SESSION['cart'])) {
-                        echo "<tr><td colspan='8' style='text-align: center'>Giỏ hàng chưa có sản phẩm nào</td></tr>";
-                    } else {
-                        for ($i = 0; $i < sizeof($_SESSION['cart'] ?? []); $i++) {
-                            $price = $_SESSION['cart'][$i][5] * $_SESSION['cart'][$i][2];
-                            $sum_price += $price;
-                            echo '<tr style="vertical-align: middle;">
-                                                            <td style="width:400px;">' .
-                                $_SESSION['cart'][$i][0] .
-                                '</td>
-                                                            <td><img src="' .
-                                $UPLOAD_URL .
-                                '/' .
-                                $_SESSION['cart'][$i][1] .
-                                '" width="100px" height="100px" style="object-fit: cover;" alt=""></td>
-                                                            <td>' .
-                                number_format($_SESSION['cart'][$i][2], 0, '', '.') .
-                                '</td>
-                                                            <td>' .
-                                $_SESSION['cart'][$i][3] .
-                                '</td>
-                                                            <td>' .
-                                $_SESSION['cart'][$i][4] .
-                                '</td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <input type="button" class="decrease" value="-">
-                                                                    <input type="text" class="quantity-input text-center" value="' .
-                                $_SESSION['cart'][$i][5] .
-                                '" min="1" step="1" readonly>
-                                                                    <input type="button" class="increase" value="+">
-                                                                </div>
-                                                            </td>
-                                                            <td>' .
-                                number_format($price, 0, '', '.') .
-                                '</td>
-                                                            <td style="width: 170px;">
-                                                                <div class="d-flex gap-1">
-                                                                    <a href="' .
-                                $SITE_URL .
-                                '/gio_hang/index.php?btn_delete=' .
-                                $i .
-                                '"><button type="button" class="btn btn-danger">Xóa</button><a>
-                                                                    <a class="btn_up"><button type="button" class="btn " style="color: white; background: #FFC107">Cập nhật</button><a> 
-                                                                </div>
-                                                            </td>
-                                                        </tr>';
-                        }
-                    }
-                    ?>
+                        @php
+                            $cart = $_SESSION['cart'] ?? $_SESSION['cart-' . $_SESSION['user']['id']];
+                        @endphp
+                        @foreach ($cart as $item)
+                            <tr style="vertical-align: middle">
+                                <td>{{ $item['name'] }}</td>
+                                <td>
+                                    <img src="{{ asset($item['img_thumbnail']) }}" width="100px" height="100px"
+                                        style="object-fit: cover" alt="">
+                                </td>
+                                <td>
+                                    {{ number_format($item['price_sale'] ?: $item['price_regular'], 0, '', '.') }}
+                                </td>
+                                <td>
+                                    @php
+                                        $url = url('cart/quantityDec') . '?productID=' . $item['id'];
 
-                </tbody>
+                                        if (
+                                            isset($_SESSION['User']) &&
+                                            isset($_SESSION['User']) &&
+                                            isset($_SESSION['cart-' . $_SESSION['user']['id']])
+                                        ) {
+                                            $url .= '&cartID=' . $_SESSION['cart_id'];
+                                        }
+                                    @endphp
+                                    <a class="btn btn-danger" href="{{ $url }}">Giảm</a>
+
+                                    {{ $item['quantity'] }}
+
+                                    @php
+                                        $url = url('cart/quantityInc') . '?productID=' . $item['id'];
+
+                                        if (
+                                            isset($_SESSION['User']) &&
+                                            isset($_SESSION['User']) &&
+                                            isset($_SESSION['cart-' . $_SESSION['user']['id']])
+                                        ) {
+                                            $url .= '&cartID=' . $_SESSION['cart_id'];
+                                        }
+                                    @endphp
+                                    <a class="btn btn-primary" href="{{ $url }}">Tăng</a>
+                                </td>
+                                <td>
+                                    {{ number_format($item['quantity'] * ($item['price_sale'] ?: $item['price_regular']), 0, '', '.') }}
+                                </td>
+                                <td>
+                                    @php
+                                        $url = url('cart/remove') . '?productID=' . $item['id'];
+
+                                        if (
+                                            isset($_SESSION['User']) &&
+                                            isset($_SESSION['cart-' . $_SESSION['user']['id']])
+                                        ) {
+                                            $url .= '&cartID=' . $_SESSION['cart_id'];
+                                        }
+                                    @endphp
+                                    <a class="btn btn-danger"
+                                        onclick="return confirm('Bạn có chắc muốn xóa {{ $item['name'] }} không ?')"
+                                        href="{{ $url }}">Xóa</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                @endif
             </table>
+
             <div class="d-flex justify-content-between">
                 <div class="d-flex gap-2 align-items-center">
                     <a href="{{ url('products') }}"><button type="button" class="btn btn-primary">Tiếp tục
                             mua sắm</button></a>
                     <a href="index.php?don_hang"><button type="button" class="btn btn-success">Lịch sử đơn
                             hàng</button></a>
-                    <a href="<?= $SITE_URL ?>/gio_hang/index.php?btn_delete_all"><button type="button"
-                            class="btn btn-danger">Xóa giỏ hàng</button></a>
+                    <a href="{{ url('cart/remove') }}" onclick="return confirm('Bạn có chắc muốn xóa không?')"><button
+                            type="button" class="btn btn-danger">Xóa giỏ hàng</button></a>
                 </div>
 
-                <div class="d-flex gap-3 align-items-center">
-                    <p class="mb-0"><b>Tổng tiền:</b> <?= number_format($sum_price, 0, '', '.') ?> VND</p>
-                    <?php echo $sum_price > 0 ? '<a href="' . $SITE_URL . '/thanh_toan/index.php?total_price=' . $sum_price . '"><button type="button" class="btn btn-success">Thanh toán</button></a>' : '<button type="button" class="btn btn-success" disabled>Thanh toán</button>'; ?>
-                </div>
+                @if (!empty($_SESSION['cart']) || (!empty($_SESSION['user']) && !empty($_SESSION['cart-' . $_SESSION['user']['id']])))
+                    @php
+                        $sum_price = 0;
+                        foreach ($cart as $item) {
+                            $sum_price += $item['quantity'] * ($item['price_sale'] ?? $item['price_regular']);
+                        }
+                    @endphp
+
+                    <div class="d-flex gap-3 align-items-center">
+                        <p class="mb-0"><b>Tổng tiền:</b> <?= number_format($sum_price, 0, '', '.') ?> VND</p>
+                        <a href="{{ url('order?total_price=') . $sum_price }}"><button type="button"
+                                class="btn btn-success">Thanh toán</button></a>
+                    </div>
+                @endif
             </div>
-
         </div>
 
     </div>

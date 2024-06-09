@@ -535,7 +535,7 @@ header {
     border-radius: 5px;
 }
 
-.scn{
+.scn {
     overflow-x: auto;
 }
 
@@ -1145,7 +1145,8 @@ p {
     height: 100%;
 }
 
-.history_cart_infor_title, .history_cart_infor_quantity{
+.history_cart_infor_title,
+.history_cart_infor_quantity {
     color: #212529;
 }
 
@@ -1184,7 +1185,7 @@ p {
     overflow: hidden;
 }
 
-.icon_deles{
+.icon_deles {
     position: absolute;
     top: 0px;
     background: #DC3545;
@@ -1195,11 +1196,11 @@ p {
     transition: all 0.3s linear;
 }
 
-.box_hd:hover > .icon_deles{
+.box_hd:hover>.icon_deles {
     transform: translateX(0);
 }
 
-.icon_deles i{
+.icon_deles i {
     color: #fff;
     font-size: 20px;
     padding: 10px 0px 10px 10px;
@@ -1333,47 +1334,3 @@ p {
     }
 
 }
-
-.box_ratings {
-    padding: 20px;
-    border-radius: 5px;
-    background: #FAFAFA;
-}
-
-.stars-container.start_item {
-    margin: -5px 0 0;
-}
-
-.stars-container.start_tong .star {
-    font-size: 30px !important;
-}
-
-.box_start_btn {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.danhgia {
-    padding: 0 10px;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    font-size: 15px;
-    font-weight: 500;
-    color: #929292;
-}
-
-.daban {
-    padding-left: 10px;
-    font-size: 15px;
-    font-weight: 500;
-    color: #929292;
-}
-
-.start_up_count {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-

@@ -39,9 +39,6 @@ $router->mount('/admin', function () use ($router) {
     });
 
 
-
-
-    // CRUD Catergory
     $router->mount('/categories', function () use ($router) {
         $router->get('/', CategoryController::class . '@index');  // Danh sách
         $router->get('/create', CategoryController::class . '@create'); // Show form thêm mới
@@ -67,6 +64,7 @@ $router->mount('/admin', function () use ($router) {
         $router->get('/{id}/update', OrderController::class . '@updateStatus');  // Danh sách
         $router->get('/{id}/show', OrderController::class . '@detail');  // Danh sách
     });
+
 });
 
 
