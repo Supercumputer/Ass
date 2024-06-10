@@ -12,29 +12,35 @@
         <div class="d-flex mx-3 gap-5 pt-3">
 
             <div>
-                <p class="name_infor">Thông tin người đặt</p>
-                <p>Họ và tên: {{ $orderInfor['user_name'] }}</p>
-                <p>Email: {{ $orderInfor['user_email'] }}</p>
-                <p>Phone: {{ $orderInfor['user_phone'] }}</p>
-                <p>Địa chỉ: {{ $orderInfor['user_address'] }}</p>
+                <p class="name_infor text-uppercase">Thông tin người đặt</p>
+                <p><b>Họ và tên:</b> {{ $orderInfor['user_name'] }}</p>
+                <p><b>Email:</b> {{ $orderInfor['user_email'] }}</p>
+                <p><b>Phone:</b> {{ $orderInfor['user_phone'] }}</p>
+                <p><b>Địa chỉ:</b> {{ $orderInfor['user_address'] }}</p>
             </div>
 
             <div>
-                <p class="name_infor">Thông tin người nhận</p>
-                <p>Họ và tên: {{ $orderInfor['shipping_name'] ?? $orderInfor['user_name'] }}</p>
-                <p>Email: {{ $orderInfor['shipping_email'] ?? $orderInfor['user_email'] }}</p>
-                <p>Phone: {{ $orderInfor['shipping_phone'] ?? $orderInfor['user_phone'] }}</p>
-                <p>Địa chỉ: {{ $orderInfor['shipping_address'] ?? $orderInfor['user_address'] }}</p>
+                <p class="name_infor text-uppercase">Thông tin người nhận</p>
+                <p><b>Họ và tên:</b> {{ $orderInfor['shipping_name'] ?: $orderInfor['user_name'] }}</p>
+                <p><b>Email:</b> {{ $orderInfor['shipping_email'] ?: $orderInfor['user_email'] }}</p>
+                <p><b>Phone:</b> {{ $orderInfor['shipping_phone'] ?: $orderInfor['user_phone'] }}</p>
+                <p><b>Địa chỉ:</b> {{ $orderInfor['shipping_address'] ?: $orderInfor['user_address'] }}</p>
             </div>
 
             <div>
-                <p class="name_infor">Thông tin đơn hàng</p>
-                <p>Tổng tiền: <?= number_format(100000, 0, '', '.') ?> vnđ</p>
-                <p>Trạng thái giao hàng:
+                <p class="name_infor text-uppercase">Thông tin đơn hàng</p>
+                @php
+                    $total = 0;
+                    foreach ($orderDetail as $key) {
+                        $total += ($key['price_sale'] ?: $key['price_regular']) * $key['quantity'];
+                    }
+                @endphp
+                <p><b>Tổng tiền:</b> <?= number_format($total, 0, '', '.') ?> vnđ</p>
+                <p><b>Trạng thái giao hàng:</b>
                     {{ $orderInfor['status_delivery'] == 0 ? 'Chờ xác nhận' : ($orderInfor['status_delivery'] == 1 ? 'Chờ lấy hàng' : ($orderInfor['status_delivery'] == 2 ? 'Chờ giao hàng' : ($orderInfor['status_delivery'] == 3 ? 'Đã giao hàng' : ($orderInfor['status_delivery'] == 4 ? 'Đã hủy' : 'Trả hàng')))) }}
                 </p>
-                <p>Ngày tạo đơn: {{ $orderInfor['created_at'] }}</p>
-                <p>Trạng thái thanh toán: {{ $orderInfor['status_payment'] === 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}
+                <p><b>Ngày tạo đơn:</b> {{ date('d/m/Y H:i:s', strtotime($orderInfor['created_at'])) }}</p>
+                <p><b>Trạng thái thanh toán:</b> {{ $orderInfor['status_payment'] === 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}
                 </p>
             </div>
 
@@ -69,7 +75,7 @@
 
                             <td>{{ $item['quantity'] }}</td>
 
-                            <td>{{ number_format((($item['price_sale'] ?? $item['price_regular'] ) * $item['quantity']), 0, '', '.') }}</td>
+                            <td>{{ number_format((($item['price_sale'] ?: $item['price_regular'] ) * $item['quantity']), 0, '', '.') }}</td>
                         </tr>
                     @endforeach
                 </tbody>

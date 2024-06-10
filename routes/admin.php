@@ -22,18 +22,17 @@ use Myasus\Assigment\Controllers\Admin\ProductController;
 use Myasus\Assigment\Controllers\Admin\OrderController;
 use Myasus\Assigment\Controllers\Admin\UserController;
 
-$router->before('GET|POST', '/admin/*.*', function() {
+$router->before('GET|POST', '/admin/*.*', function () {
 
     if (!is_logged()) {
-        header('location: ' . url('login') );
-        exit();
-    } 
-
-    if (!is_admin()) {
-        header('location: ' . url() );
+        header('location: ' . url('login'));
         exit();
     }
-    
+
+    if (!is_admin()) {
+        header('location: ' . url());
+        exit();
+    }
 });
 
 
@@ -45,11 +44,11 @@ $router->mount('/admin', function () use ($router) {
     $router->mount('/products', function () use ($router) {
         $router->get('/',               ProductController::class . '@index');  // Danh sách
         $router->get('/create',         ProductController::class . '@create'); // Show form thêm mới
-         $router->post('/store',         ProductController::class . '@store');  // Lưu mới vào DB
-         $router->get('/{id}/show',      ProductController::class . '@show');   // Xem chi tiết
-         $router->get('/{id}/edit',      ProductController::class . '@edit');   // Show form sửa
-         $router->post('/{id}/update',   ProductController::class . '@update'); // Lưu sửa vào DB
-         $router->get('/{id}/delete',    ProductController::class . '@delete'); // Xóa
+        $router->post('/store',         ProductController::class . '@store');  // Lưu mới vào DB
+        $router->get('/{id}/show',      ProductController::class . '@show');   // Xem chi tiết
+        $router->get('/{id}/edit',      ProductController::class . '@edit');   // Show form sửa
+        $router->post('/{id}/update',   ProductController::class . '@update'); // Lưu sửa vào DB
+        $router->get('/{id}/delete',    ProductController::class . '@delete'); // Xóa
     });
 
 
@@ -77,12 +76,7 @@ $router->mount('/admin', function () use ($router) {
         $router->get('/', OrderController::class . '@index');  // Danh sách
         $router->get('/{id}/update', OrderController::class . '@updateStatus');  // Danh sách
         $router->get('/{id}/show', OrderController::class . '@detail');  // Danh sách
+        $router->get('/{id}/delete', OrderController::class . '@delete');  // Danh sách
     });
-
+    
 });
-
-
-
-
-
-

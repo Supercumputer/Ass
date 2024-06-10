@@ -16,23 +16,16 @@ class CategoryController extends Controller
         $this->category = new Category();
     }
 
-    //  public function index()
-    // {
-
-    //     helper::debug($this->category);
-    //     echo __CLASS__ . '@' . __FUNCTION__;
-
-    // }
     public function index()
     {
 
         [$category, $totalPage] = $this->category->paginate($_GET['page'] ?? 1);
 
-
         $this->renderViewAdmin('category.index', [
             'category' => $category,
             'total' => $totalPage,
         ]);
+        
     }
 
     public function delete($id)

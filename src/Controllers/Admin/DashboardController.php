@@ -26,15 +26,15 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
-        $users= $this->user->getTop5MemberNew();
-        
-        [$orders, $totalPage] = $this->order->paginate($_GET['page'] ?? 1);
-
         
         $totalUsers = $this->user->count();
         $totalOrders = $this->order->count();
         $totalProducts = $this->product->count();
         $totalCategorys = $this->category->count();
+        
+        [$orders, $totalPage] = $this->order->paginate($_GET['page'] ?? 1);
+        
+        $users= $this->user->getTop5MemberNew();
 
         $this->renderViewAdmin('dashboard', [
             'totalUsers' => $totalUsers,

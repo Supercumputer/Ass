@@ -98,9 +98,7 @@ class OrderController extends Controller
                 ]);
             }
 
-            // Xóa dữ liệu trong Cart + CartDetail theo CartID - $_SESSION['cart_id']
-
-            // Xóa trong SESSION
+            
             unset($_SESSION[$key]);
 
             if (isset($_SESSION['user'])) {

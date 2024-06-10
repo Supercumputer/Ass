@@ -51,4 +51,12 @@ class OrderController extends Controller
         header('Location: ' . url('admin/orders'));
         exit();
     }
+
+    public function delete($id)
+    {
+        $this->order->delete($id);
+        header('Location: ' . url('admin/orders'));
+        exit();
+        
+    }
 }

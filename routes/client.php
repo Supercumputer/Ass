@@ -23,14 +23,8 @@ $router->get('/logout',            LoginController::class    . '@logout');
 $router->get('/products',          ProductController::class    . '@index');
 $router->get('/products/{id}',     ProductController::class    . '@detail');
 
-$router->get('/cart',              CartController::class    . '@index');
-
-
-
-
-
 $router->mount('/cart', function () use ($router) {
-    $router->get('/',                   CartController::class .  '@index');
+    $router->get('/',               CartController::class .  '@index');
     $router->get('/add',            CartController::class .  '@add');
     $router->get('/quantityInc',    CartController::class .  '@quantityInc');
     $router->get('/quantityDec',    CartController::class .  '@quantityDec');
@@ -38,8 +32,7 @@ $router->mount('/cart', function () use ($router) {
     $router->get('/detail',         CartController::class .  '@detail');
 });
 
-
-
 $router->get('order',              OrderController::class . '@index');
 $router->post('order/checkout',    OrderController::class . '@checkout');
 $router->get('thanks',             OrderController::class . '@thanks');
+

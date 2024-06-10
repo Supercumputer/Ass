@@ -38,6 +38,7 @@ Danh muc
                     <th scope="col">Action</th>
                 </tr>
             </thead>
+            
             <tbody>
                 @foreach ($category as $cate)
                     <tr style="vertical-align: middle;">
