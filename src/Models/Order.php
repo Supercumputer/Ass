@@ -17,4 +17,14 @@ class Order extends Model
         ->setParameter(1, $orderid)
         ->executeQuery();
     }
+
+    public function findByUserID($id)
+    {
+        return $this->queryBuilder
+        ->select('*')
+        ->from($this->tableName)
+        ->where('user_id = ?')
+        ->setParameter(0, $id)
+        ->fetchAllAssociative();
+    }
 }

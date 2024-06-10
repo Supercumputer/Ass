@@ -48,7 +48,7 @@ class OrderController extends Controller
 
         if ($validation->fails()) {
             $_SESSION['errors'] = $validation->errors()->firstOfAll();
-            
+
             header('location: ' . url('order?total_price=' . $_POST['total_price']));
             exit;
         } else {
@@ -98,7 +98,7 @@ class OrderController extends Controller
                 ]);
             }
 
-            
+
             unset($_SESSION[$key]);
 
             if (isset($_SESSION['user'])) {
@@ -108,8 +108,36 @@ class OrderController extends Controller
             header('Location: ' . url('thanks'));
             exit;
         }
+    }
 
+    public function history()
+    {
+        $id = $_SESSION['user']['id'] ?? $_GET['order_id'] ?? null;
+
+        $data = [];
+
+        if (isset($_SESSION['user']['id'])) {
+            $data = $this->order->findByUserID($id);
+        } else {
+            $order = $this->order->findByID($id);
+            if(!empty($order)){
+                array_push($data, $order);
+            }
+        }
         
+        // Helper::debug($data);
+        $this->renderViewClient('history', [
+            'data' => $data
+        ]);
+    }
+
+    public function orderDetail($id)
+    {
+        $data = $this->orderDetail->findByOrderId($id);
+        // Helper::debug($data);
+        $this->renderViewClient('order-detail', [
+            'data' => $data
+        ]);
     }
 
     public function thanks()

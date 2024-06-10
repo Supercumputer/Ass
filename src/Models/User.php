@@ -28,4 +28,7 @@ class User extends Model
             ->setMaxResults(5)
             ->fetchAllAssociative();
     }
+
+    
+
 }

@@ -21,9 +21,12 @@ class ProductController extends Controller
     public function index()
     {
         $categorys = $this->category->all();
-
+        
         $page = $_GET['page'] ?? 1;
-        [$products, $totalPage] = $this->product->paginate($page);
+
+        $sort_by = $_GET['sort_by'] ?? 'default_sort';
+
+        [$products, $totalPage] = $this->product->paginateProduct($page, $sort_by);
 
         $this->renderViewClient('product', [
             'categorys' => $categorys,
@@ -33,15 +36,14 @@ class ProductController extends Controller
         ]);
     }
 
-
     public function detail($id)
     {
 
-        $productCategory = $this->product->getProductInfor($id);
-
-        // $this->renderViewClient('product-detail', [
-        //     'productInfor' => $productInfor,
-        //     // 'productCategory'=>$productCategory,
-        // ]);
+        [$productInfor, $productCategory] = $this->product->getProductInfor($id);
+        // Helper::debug($productCategory);
+        $this->renderViewClient('product-detail', [
+            'productInfor' => $productInfor,
+            'productCategory' => $productCategory,
+        ]);
     }
 }

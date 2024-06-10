@@ -30,7 +30,7 @@ class Product extends Model
             ->fetchAllAssociative();
     }
 
-    public function paginate($page = 1, $perPage = 8)
+    public function paginateProduct($page = 1, $sort_by = 'default_sort', $perPage = 8)
     {
         $queryBuilder = clone ($this->queryBuilder);
 
@@ -53,11 +53,23 @@ class Product extends Model
             ->from($this->tableName, 'p')
             ->innerJoin('p', 'categories', 'c', 'c.id = p.category_id')
             ->setFirstResult($offset)
-            ->setMaxResults($perPage)
-            ->orderBy('p.id', 'desc')
-            ->fetchAllAssociative();
+            ->setMaxResults($perPage);
 
-        return [$data, $totalPage];
+        switch ($sort_by) {
+            case 'price_desc':
+                $data->orderBy('p.price_regular', 'asc');
+                break;
+            case 'price_asc':
+                $data->orderBy('p.price_regular', 'desc');
+                break;
+            default:
+                $data->orderBy('p.id', 'desc');
+                break;
+        };
+
+        $result = $data->fetchAllAssociative();
+
+        return [$result, $totalPage];
     }
 
     public function findByID($id)
@@ -94,7 +106,8 @@ class Product extends Model
     }
 
 
-    public function getProductsByCategory($categoryId){
+    public function getProductsByCategory($categoryId)
+    {
         return $this->queryBuilder
             ->select('*')
             ->from($this->tableName)

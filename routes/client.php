@@ -34,5 +34,7 @@ $router->mount('/cart', function () use ($router) {
 
 $router->get('order',              OrderController::class . '@index');
 $router->post('order/checkout',    OrderController::class . '@checkout');
+$router->get('order/history',      OrderController::class . '@history');
+$router->get('order/{id}/detail',      OrderController::class . '@orderDetail');
 $router->get('thanks',             OrderController::class . '@thanks');
 

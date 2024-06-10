@@ -110,7 +110,7 @@
                 <div class="d-flex gap-2 align-items-center">
                     <a href="{{ url('products') }}"><button type="button" class="btn btn-primary">Tiếp tục
                             mua sắm</button></a>
-                    <a href="index.php?don_hang"><button type="button" class="btn btn-success">Lịch sử đơn
+                    <a href="{{url('order/history')}}"><button type="button" class="btn btn-success">Lịch sử đơn
                             hàng</button></a>
                     <a href="{{ url('cart/remove') }}" onclick="return confirm('Bạn có chắc muốn xóa không?')"><button
                             type="button" class="btn btn-danger">Xóa giỏ hàng</button></a>
