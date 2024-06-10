@@ -35,7 +35,7 @@ Danh muc
     @endif
 
     <div class="box_wap mx-3 py-3">
-        <form action="{{ url("admin/categorys/{$category['id']}/update") }}" method="POST" id="form" class="row g-3"
+        <form action="{{ url("admin/categories/{$category['id']}/update") }}" method="POST" id="form" class="row g-3"
             enctype="multipart/form-data">
             <div class="col-md-4">
                 <label for="inputEmail4" class="form-label">Tên danh mục</label>
@@ -50,7 +50,7 @@ Danh muc
             <div class="box_btn">
                 <button type="submit" class="btn btn-primary">Cập nhật</button>
                 <button type="reset" class="btn btn-secondary">Nhập lại</button>
-                <button type="button" class="btn btn-success"><a href="{{ url('admin/categorys') }}">Danh sách</a></button>
+                <button type="button" class="btn btn-success"><a href="{{ url('admin/categories') }}">Danh sách</a></button>
             </div>
         </form>
 

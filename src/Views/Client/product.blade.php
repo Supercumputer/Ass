@@ -117,7 +117,7 @@ Home
                         <div href="{{ url('products/' . $product['id']) }}" class="box_sp d-flex flex-column">
                             <a href="{{ url('products/' . $product['id']) }}"
                                 class="box_img_sp d-flex justify-content-center">
-                                <img src="{{ asset($product['img_thumbnail']) }}" alt="">
+                                <img src="{{ asset($product['img_thumbnail']) }}" alt="" >
                             </a>
                             <h1 class="title">{{ $product['name'] }}</h1>
                             <span>

@@ -170,7 +170,7 @@
         <div class="row">
             @foreach ($productByCategory as $item)
                 <div class=" col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-                    <a href="" class="box_sp d-flex flex-column">
+                    <a href="{{ url('products/' . $item['id']) }}" class="box_sp d-flex flex-column">
                         <div class="box_img_sp d-flex justify-content-center">
 
                             <img src="{{ asset($item['img_thumbnail']) }}" alt="">

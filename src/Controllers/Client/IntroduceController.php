@@ -3,11 +3,27 @@
 namespace Myasus\Assigment\Controllers\Client;
 
 use Myasus\Assigment\Commons\Controller;
+use Myasus\Assigment\Models\Category;
+
 class IntroduceController extends Controller
 {
+    private Category $category;
+    public function __construct()
+    {
+        
+        $this->category = new Category();
+    }
+
     public function index()
     {
-
-        $this->renderViewClient('introduce', []);
+        $categorys = $this->category->all();
+        
+        $this->renderViewClient('introduce', [
+         
+            'categorys'=> $categorys,
+           
+        ]);
     }
+
+
 }

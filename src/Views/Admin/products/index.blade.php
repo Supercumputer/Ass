@@ -39,6 +39,7 @@
                          <th>PRICE_REGULAR</th>
                          <th>PRICE_SALE</th>
                          <th>CREATED AT</th>
+                         <th>UPDATED AT</th>
                          <th>ACTION</th>
                      </tr>
                  </thead>
@@ -66,12 +67,13 @@
                                  @endif
                              </td>
                              <td>{{ date('d/m/Y H:i:s', strtotime($product['created_at'])) }}</td>
+                             <td>{{ date('d/m/Y H:i:s', strtotime($product['updated_at'])) }}</td>
                              <td>
-                                 <a href="{{ url("admin/products/{$product['id']}/show") }}" class="btn btn-info">Xem</a>
+                                 <a href="{{ url("admin/products/{$product['id']}/show") }}" class="btn btn-info">Xem</a> <br>
                                  <a href="{{ url("admin/products/{$product['id']}/edit") }}"
-                                     class="btn btn-warning">Sửa</a>
+                                     class="btn btn-warning mt-1">Sửa</a> <br>
                                  <a href="{{ url("admin/products/{$product['id']}/delete") }}"
-                                     onclick="return confirm('Chắc chắn xóa không?');" class="btn btn-danger">Xóa</a>
+                                     onclick="return confirm('Chắc chắn xóa không?');" class="btn btn-danger mt-1">Xóa</a>
                              </td>
                          </tr>
                      @endforeach
