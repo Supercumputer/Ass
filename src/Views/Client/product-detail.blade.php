@@ -12,9 +12,8 @@
                     <div class="col-lg-6 ">
 
                         <div class="box_img_imgs">
-                            <img class="card-img-top" style=
-                            ""; height="200px"; object-fit:cover;
-                                ; src="{{ asset($productInfor['img_thumbnail']) }}" alt="Card image">
+                            <img class="card-img-top" style="height: 600px; width: full; object-fit: cover "
+                             src="{{ asset($productInfor['img_thumbnail']) }}" alt="Card image">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -32,15 +31,18 @@
                         </div> --}}
 
                         <div class="box_price my-3 d-flex align-items-center">
-                            
-                               @if($productInfor['price_sale'])
-                                   <p class="t_price"> {{number_format($productInfor['price_regular'], 0, "", ".")}}VND </p> - <p class="t_discount mx-1">{{number_format($productInfor['price_sale'], 0, "", ".")}} VND</p>
-                                 @else
-                                 <p class="t_discount">{{number_format($productInfor['price_regular'], 0, "", ".")}}VND </p>
-                                 @endif
-                                
-                       
-    
+
+                            @if ($productInfor['price_sale'])
+                                <p class="t_price"> {{ number_format($productInfor['price_regular'], 0, '', '.') }}VND </p>
+                                - <p class="t_discount mx-1">{{ number_format($productInfor['price_sale'], 0, '', '.') }}
+                                    VND</p>
+                            @else
+                                <p class="t_discount">{{ number_format($productInfor['price_regular'], 0, '', '.') }}VND
+                                </p>
+                            @endif
+
+
+
                         </div>
 
                         <p class="mn">Số lượng:</p>
@@ -74,7 +76,7 @@
 
                 <div class="swiper card_slider">
                     <div class="swiper-wrapper">
-    
+
                         @foreach ($productCategory as $category)
                             <div class="swiper-slide">
                                 <div href="{{ url('products/' . $category['id']) }}" class="box_sp d-flex flex-column">
@@ -94,7 +96,7 @@
                     <div class="swiper-button-next arrow arrow-left"></div>
                     <div class="swiper-button-prev arrow arrow-left"></div>
                 </div>
-    
+
             </div>
         </div>
 
@@ -106,7 +108,7 @@
                             class="okl">{{ $productInfor['c_name'] }}</span>
                     </p>
                     <p class="d-flex"><span class="mjh">Ngày sản xuất:</span><span
-                            class="okl">{{ $productInfor['created_at'] }}</span></p>
+                            class="okl"> {{ date('d/m/Y H:i:s', strtotime($productInfor['created_at'])) }}</span></p>
                     </p>
                 </div>
                 <p class="tii">MÔ TẢ SẢN PHẨM</p>
@@ -117,5 +119,4 @@
         </div>
 
     </div>
-    
 @endsection

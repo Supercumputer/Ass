@@ -33,13 +33,13 @@
                              <input class="form-check-input" name="input_all" type="checkbox" value="">
                          <th>
                          <th>ID</th>
-                         <th>IMG THUMBNAIL</th>
-                         <th>NAME</th>
-                         <th>Category Name</th>
-                         <th>PRICE_REGULAR</th>
-                         <th>PRICE_SALE</th>
-                         <th>CREATED AT</th>
-                         <th>ACTION</th>
+                         <th>Tên sản phẩm</th>
+                         <th>Ảnh </th>
+                         <th>Danh mục</th>
+                         <th>Giá gốc</th>
+                         <th>Giá sale</th>
+                         <th>Ngày tạo</th>
+                         <th>Hành động</th>
                      </tr>
                  </thead>
                  <tbody>
@@ -51,11 +51,11 @@
                                      value="<?= $product_id ?>" data_id="<?= $product_id ?>" data_name="sp">
                              <th>
                              <td>{{ $product['id'] }}</td>
-                             <td>
-                                 <img src="{{ asset($product['img_thumbnail']) }}" width="100" height="100" style=" object-fit:cover";
-                                     alt="">
-                             </td>
                              <td>{{ $product['name'] }}</td>
+                             <td>
+                                 <img src="{{ asset($product['img_thumbnail']) }}" width="100" height="100"
+                                     style=" object-fit:cover"; alt="">
+                             </td>
                              <td>{{ $product['c_name'] }}</td>
                              <td>{{ number_format($product['price_regular'], 0, '.', '.') }}đ</td>
                              <td>
@@ -65,13 +65,15 @@
                                      null
                                  @endif
                              </td>
-                             <td>{{ date('d/m/Y H:i:s', strtotime($product['created_at'])) }}</td>
+                             <td>{{ date('d/m/Y', strtotime($product['created_at'])) }}</td>
+
                              <td>
                                  <a href="{{ url("admin/products/{$product['id']}/show") }}" class="btn btn-info">Xem</a>
+                                 <br>
                                  <a href="{{ url("admin/products/{$product['id']}/edit") }}"
-                                     class="btn btn-warning">Sửa</a>
+                                     class="btn btn-warning mt-1">Sửa</a> <br>
                                  <a href="{{ url("admin/products/{$product['id']}/delete") }}"
-                                     onclick="return confirm('Chắc chắn xóa không?');" class="btn btn-danger">Xóa</a>
+                                     onclick="return confirm('Chắc chắn xóa không?');" class="btn btn-danger mt-1">Xóa</a>
                              </td>
                          </tr>
                      @endforeach

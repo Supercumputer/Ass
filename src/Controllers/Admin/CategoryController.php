@@ -19,13 +19,12 @@ class CategoryController extends Controller
     public function index()
     {
 
-        [$category, $totalPage] = $this->category->paginate($_GET['page'] ?? 1);
+        $category = $this->category->all();
 
         $this->renderViewAdmin('category.index', [
-            'category' => $category,
-            'total' => $totalPage,
+            'category' => $category
+
         ]);
-        
     }
 
     public function delete($id)
@@ -43,13 +42,11 @@ class CategoryController extends Controller
 
         header('Location: ' . url('admin/categories'));
         exit();
-
     }
 
     public function create()
     {
         $this->renderViewAdmin('category.create');
-
     }
 
     public function store()
@@ -58,7 +55,7 @@ class CategoryController extends Controller
         $validator = new Validator;
         $validation = $validator->make($_POST + $_FILES, [
             'name' => 'required|max:50',
-            'image' => 'uploaded_file:0,2M,jpg,jpeg',
+            'image' => 'uploaded_file:0,2M,jpg,jpeg,webp',
 
         ]);
 
@@ -74,7 +71,7 @@ class CategoryController extends Controller
         } else {
             $data = [
                 'name' => $_POST['name'],
-               
+
             ];
             //    helper::debug($_FILES);
             if (!empty($_FILES['image']) && $_FILES['image']['size'] > 0) {
@@ -90,7 +87,6 @@ class CategoryController extends Controller
                     header('location: ' . url('admin/categories/create'));
                     exit;
                 }
-
             }
             $this->category->insert($data);
             $_SESSION['status'] = true;
@@ -98,8 +94,7 @@ class CategoryController extends Controller
             header('location: ' . url('admin/categories'));
             exit;
         }
-
-    } 
+    }
     public function edit($id)
     {
         $category = $this->category->findByID($id);
@@ -115,21 +110,21 @@ class CategoryController extends Controller
         $validator = new Validator;
         $validation = $validator->make($_POST + $_FILES, [
             'name'                  => 'required|max:50',
-           
-            'image'                => 'uploaded_file:0,2M,png,jpg,jpeg',
-           
+
+            'image'                => 'uploaded_file:0,2M,png,jpg,jpeg,webp',
+
         ]);
         $validation->validate();
 
         if ($validation->fails()) {
             $_SESSION['errors'] = $validation->errors()->firstOfAll();
 
-            header('Location: ' . url("admin/categories/{$category ['id']}/edit"));
+            header('Location: ' . url("admin/categories/{$category['id']}/edit"));
             exit;
         } else {
             $data = [
                 'name'      => $_POST['name'],
-                
+
             ];
 
             $flagUpload = false;
@@ -167,9 +162,4 @@ class CategoryController extends Controller
             exit;
         }
     }
-
-
-
-
 }
-

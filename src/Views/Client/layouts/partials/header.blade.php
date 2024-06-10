@@ -1,7 +1,7 @@
 <header class="container-fuild">
     <div class="header_top">
         <div class="box_wrap_top d-flex justify-content-md-between justify-content-center">
-            <p class="title_header">Chào mừng bạn đến với website shop võ thuật</p>
+            <p class="title_header">Chào mừng {{ isset($_SESSION['user']) ? $_SESSION['user']['name'] : 'bạn' }} đến với website shop võ thuật</p>
             <div class="d-md-block d-none">
                 <div class="d-flex d-flex align-items-center gap-2">
                     <nav>

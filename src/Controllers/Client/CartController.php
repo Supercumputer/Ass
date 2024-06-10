@@ -6,6 +6,7 @@ use Myasus\Assigment\Commons\Controller;
 use Myasus\Assigment\Commons\Helper;
 use Myasus\Assigment\Models\Cart;
 use Myasus\Assigment\Models\CartDetail;
+use Myasus\Assigment\Models\Category;
 use Myasus\Assigment\Models\Product;
 
 class CartController extends Controller
@@ -13,16 +14,24 @@ class CartController extends Controller
     private Product $product;
     private Cart $cart;
     private CartDetail $cartDetail;
+    private Category $category;
 
     public function __construct()
     {
         $this->product = new Product();
         $this->cart = new Cart();
         $this->cartDetail = new CartDetail();
+        $this->category = new Category();
     }
     public function index()
     {
-        $this->renderViewClient('cart', []);
+        $categorys = $this->category->all();
+        $this->renderViewClient('cart', [
+            'categorys' => $categorys,
+          
+
+
+        ]);
     }
 
     public function add()

@@ -48,7 +48,7 @@ class ProductController extends Controller
             'price_regular'         => 'required',
             'overview'              => 'max:500',
             'content'               => 'max:65000',
-            'img_thumbnail'         => 'uploaded_file:0,2048K,png,jpeg,jpg',
+            'img_thumbnail'         => 'uploaded_file:0,2048K,png,jpeg,jpg,webp',
         ]);
 
         
@@ -131,7 +131,7 @@ class ProductController extends Controller
             'price_sale'            => 'required',
             'overview'              => 'max:500',
             'content'               => 'max:65000',
-            'img_thumbnail'         => 'uploaded_file:0,2048K,png,jpeg,jpg',
+            'img_thumbnail'         => 'uploaded_file:0,2048K,png,jpeg,jpg,webp',
         ]);
         $validation->validate();
 

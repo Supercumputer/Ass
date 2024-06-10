@@ -58,10 +58,10 @@ Danh muc
 
                         <td>
                             <div class="icon_btn">
-                                <a class="btn btn-danger" href="{{ url('admin/categorys/' . $cate['id'] . '/delete') }}"
+                                <a class="btn btn-danger" href="{{ url('admin/categories/' . $cate['id'] . '/delete') }}"
                                     onclick="return confirm('Chắc chắn xóa không?')">Xóa</a>
 
-                                <a class="btn btn-warning" href="{{ url('admin/categorys/' . $cate['id'] . '/edit') }}">Sửa</a>
+                                <a class="btn btn-warning" href="{{ url('admin/categories/' . $cate['id'] . '/edit') }}">Sửa</a>
 
                             </div>
                         </td>

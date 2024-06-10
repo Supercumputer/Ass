@@ -56,6 +56,41 @@
             </form>
 
         </div>
+<<<<<<< HEAD
+=======
+    @endif
+
+    @if (isset($_SESSION['status']) && $_SESSION['status'])
+        <div class="alert alert-success">
+            {{ $_SESSION['msg'] }}
+        </div>
+
+        @php
+            unset($_SESSION['status']);
+            unset($_SESSION['msg']);
+        @endphp
+    @endif
+
+    <div class="box_wap mx-3 py-3">
+        <form action="{{ url("admin/categories/{$category['id']}/update") }}" method="POST" id="form" class="row g-3"
+            enctype="multipart/form-data">
+            <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">Tên danh mục</label>
+                <input type="text" class="form-control" id="inputEmail4" name="name"
+                value="{{ $category['name'] }}" >
+            </div>
+            <div class="col-md-4">
+                <label for="formFile" class="form-label">Hình ảnh</label>
+                <input type="file" class="form-control" id="avatar" placeholder="Enter avatar" name="image">
+                <img src="{{ asset($category['image']) }}" alt="" width="100px">
+            </div>
+            <div class="box_btn">
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                <button type="reset" class="btn btn-secondary">Nhập lại</button>
+                <button type="button" class="btn btn-success"><a href="{{ url('admin/categories') }}">Danh sách</a></button>
+            </div>
+        </form>
+>>>>>>> ed8ce7b842daa3b24efaaceee634293d71b378c9
 
     </div>
 
