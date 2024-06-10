@@ -203,25 +203,35 @@
 
                     <div class="swiper-slide">
                         <div class="d-flex justify-content-center">
-                            <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
+                            <img src="{{ asset('assets/client/img/vendor_logo6.jpg') }}" width="100px" height="100px" alt="">
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="d-flex justify-content-center">
-                            <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
+                        <div class="d-flex  d-flex justify-content-center">
+                            <img src="{{ asset('assets/client/img/vendor_logo2.jpg') }}" width="100px" height="100px" alt="">
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="d-flex justify-content-center">
-                            <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
+                        <div class="d-flex d-flex justify-content-center">
+                            <img src="{{ asset('assets/client/img/vendor_logo3.jpg') }}" width="100px" height="100px" alt="">
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="d-flex justify-content-center">
-                            <img src="{{ asset('assets/client/img/slider_1.jpg') }}" alt="">
+                        <div class="d-flex  d-flex justify-content-center">
+                            <img src="{{ asset('assets/client/img/vendor_logo4.jpg') }}" width="100px" height="100px" alt="">
                         </div>
                     </div>
-
+                    <div class="swiper-slide">
+                        <div class="d-flex d-flex justify-content-center">
+                            <img src="{{ asset('assets/client/img/vendor_logo5.jpg') }}" width="100px" height="100px" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="d-flex d-flex justify-content-center">
+                            <img src="{{ asset('assets/client/img/vendor_logo6.jpg') }}" width="100px" height="100px" alt="">
+                        </div>
+                    </div>
+                   
                 </div>
                 <div class="swiper-button-next  arrow-left"></div>
                 <div class="swiper-button-prev arrow-left "></div>

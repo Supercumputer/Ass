@@ -30,7 +30,7 @@ class Product extends Model
             ->fetchAllAssociative();
     }
 
-    public function paginateProduct($page = 1, $sort_by = 'default_sort', $perPage = 8)
+    public function paginate($page = 1, $sort_by = 'default_sort', $perPage = 8)
     {
         $queryBuilder = clone ($this->queryBuilder);
 
@@ -57,10 +57,10 @@ class Product extends Model
 
         switch ($sort_by) {
             case 'price_desc':
-                $data->orderBy('p.price_regular', 'asc');
+                $data->orderBy('p.price_regular', 'desc');
                 break;
             case 'price_asc':
-                $data->orderBy('p.price_regular', 'desc');
+                $data->orderBy('p.price_regular', 'asc');
                 break;
             default:
                 $data->orderBy('p.id', 'desc');

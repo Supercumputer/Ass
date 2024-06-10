@@ -21,6 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->product->all();
+        
         $this->renderViewAdmin('products.index', [
             'products' => $products
         ]);

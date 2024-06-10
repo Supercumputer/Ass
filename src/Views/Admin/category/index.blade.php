@@ -49,7 +49,7 @@ Danh muc
                             <?= $cate['id'] ?>
                         </td>
                         <td>
-                            <img src="{{ asset($cate['image']) }}" alt="" width="100px">
+                            <img src="{{ asset($cate['image']) }}" alt="" width="100" height="100" style=" object-fit:cover">
                         </td>
 
                         <td>

@@ -20,10 +20,15 @@ class OrderController extends Controller
 
     public function index()
     {
+        $perPage = $_GET['perPage'] ?? 5;
         $page = $_GET['page'] ?? 1;
-        [$orders, $totalPage] = $this->order->paginate($page);
+        $sort_by = $_GET['sort_by'] ?? 'default_sort';
+
+        [$orders, $totalPage] = $this->order->paginate($page, $sort_by, $perPage);
 
         $this->renderViewAdmin('orders.index', [
+            'sort_by' => $sort_by,
+            'perPage' => $perPage,
             'page' => $page,
             'orders' => $orders,
             'totalPage' => $totalPage
@@ -57,6 +62,5 @@ class OrderController extends Controller
         $this->order->delete($id);
         header('Location: ' . url('admin/orders'));
         exit();
-        
     }
 }

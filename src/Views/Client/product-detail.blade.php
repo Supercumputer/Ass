@@ -34,9 +34,9 @@
                         <div class="box_price my-3 d-flex align-items-center">
                             
                                @if($productInfor['price_sale'])
-                                   <p class="t_price">đ {{number_format($productInfor['price_regular'], 0, "", ".")}} </p> - <p class="t_discount mx-1">₫ {{number_format($productInfor['price_sale'], 0, "", ".")}}</p>
+                                   <p class="t_price"> {{number_format($productInfor['price_regular'], 0, "", ".")}}VND </p> - <p class="t_discount mx-1">{{number_format($productInfor['price_sale'], 0, "", ".")}} VND</p>
                                  @else
-                                 <p class="t_discount">₫ {{number_format($productInfor['price_regular'], 0, "", ".")}} </p>
+                                 <p class="t_discount">{{number_format($productInfor['price_regular'], 0, "", ".")}}VND </p>
                                  @endif
                                 
                        

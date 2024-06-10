@@ -21,12 +21,12 @@ class ProductController extends Controller
     public function index()
     {
         $categorys = $this->category->all();
-        
+
         $page = $_GET['page'] ?? 1;
 
         $sort_by = $_GET['sort_by'] ?? 'default_sort';
 
-        [$products, $totalPage] = $this->product->paginateProduct($page, $sort_by);
+        [$products, $totalPage] = $this->product->paginate($page, $sort_by);
 
         $this->renderViewClient('product', [
             'categorys' => $categorys,

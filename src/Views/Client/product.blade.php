@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-lg-4 col-md-6 col-10">
-                <form action="{{url('products')}}" method="get" class="d-flex gap-2">
+                <form action="{{ url('products') }}" method="get" class="d-flex gap-2">
 
                     <select class="form-select" name="sort_by">
                         <option value="default_sort">Sắp xếp sản phẩm</option>
@@ -103,9 +103,9 @@
 
                 </div>
             </div>
+
             <div class="col-xl-9 mb-3">
                 <div class="row">
-
                     @foreach ($products as $product)
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-3">
                             <div href="{{ url('products/' . $product['id']) }}" class="box_sp d-flex flex-column">
@@ -114,62 +114,51 @@
                                     <img src="{{ asset($product['img_thumbnail']) }}" alt="">
                                 </a>
                                 <h1 class="title">{{ $product['name'] }}</h1>
-                                <div class="box_price d-flex align-items-center">
-
-                                    @if ($product['price_sale'])
-                                        <p class="t_price">đ {{ number_format($product['price_regular'], 0, '', '.') }}
-                                        </p> - <p class="t_discount mx-1">₫
-                                            {{ number_format($product['price_sale'], 0, '', '.') }}</p>
-                                    @else
-                                        <p class="t_discount">₫ {{ number_format($product['price_regular'], 0, '', '.') }}
-                                        </p>
-                                    @endif
-                                </div>
+                                <span>
+                                    {{ number_format($product['price_regular'], 0, '', '.') }} VND
+                                </span>
                                 <a href="{{ url('cart/add') }}?quantity=1&productID={{ $product['id'] }}"
                                     class="btn btn-danger mx-2 mb-2">Thêm vào giỏ hàng</a>
+
                             </div>
                         </div>
                     @endforeach
+
+                    @if ($totalPage > 1)
+                        <div class="d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    @if ($page > 1)
+                                        <li class="page-item">
+                                            <a class="page-link linkm"
+                                                href="{{ url('products') }}?page={{ $page - 1 }}">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @for ($i = 1; $i <= $totalPage; $i++)
+                                        <li class="page-item"><a class="page-link linkm"
+                                                href="{{ url('products') }}?page={{ $i }}">
+                                                {{ $i }}
+                                            </a>
+                                        </li>
+                                    @endfor
+
+                                    @if ($page < $totalPage)
+                                        <li class="page-item">
+                                            <a class="page-link linkm"
+                                                href="{{ url('products') }}?page={{ $page + 1 }}">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </nav>
+                        </div>
+                    @endif
+
                 </div>
-
-
-                @if ($totalPage > 1)
-                    <div class="d-flex justify-content-center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                @if ($page > 1)
-                                    <li class="page-item">
-                                        <a class="page-link linkm"
-                                            href="{{ url('products') }}?page={{ $page - 1 }}">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                @endif
-
-                                <?php    for ($i = 1; $i <= $totalPage; $i++): ?>
-
-                                <li class="page-item"><a class="page-link linkm"
-                                        href="{{ url('products') }}?page={{ $i }}">
-                                        <?= $i ?>
-                                    </a>
-                                </li>
-
-                                <?php    endfor ?>
-
-                                <?php    if ($page < $totalPage): ?>
-
-                                <li class="page-item">
-                                    <a class="page-link linkm" href="{{ url('products') }}?page={{ $page + 1 }}">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-
-                                <?php    endif ?>
-                            </ul>
-                        </nav>
-                    </div>
-                @endif
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

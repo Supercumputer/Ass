@@ -29,8 +29,8 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">NAME</th>
                     <th scope="col">AVATAR</th>
+                    <th scope="col">NAME</th>
                     <th scope="col">Email</th>
                     <th scope="col">TYPE</th>
                     <th scope="col">CREATED_AT</th>
@@ -42,10 +42,10 @@
 
                 @foreach ($users as $user)
 
-                    <tr>
+                <tr style="vertical-align: middle;">
                         <td><?= $user['id'] ?></td>
                         <td>
-                            <img src="{{ asset($user['avatar']) }}" alt="" width="100px">
+                            <img src="{{ asset($user['avatar']) }}" alt="" width="100" height="100" style=" object-fit:cover">
                         </td>
                         <td><?= $user['name'] ?></td>
                         <td><?= $user['email'] ?></td>

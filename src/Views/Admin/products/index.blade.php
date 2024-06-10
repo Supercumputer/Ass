@@ -45,14 +45,14 @@
                  <tbody>
 
                      @foreach ($products as $product)
-                         <tr>
+                         <tr style="vertical-align: middle;">
                              <th scope="col">
                                  <input class="form-check-input" name="input_item" type="checkbox"
                                      value="<?= $product_id ?>" data_id="<?= $product_id ?>" data_name="sp">
                              <th>
                              <td>{{ $product['id'] }}</td>
                              <td>
-                                 <img src="{{ asset($product['img_thumbnail']) }}" width="100px" style=" object-fit:cover";
+                                 <img src="{{ asset($product['img_thumbnail']) }}" width="100" height="100" style=" object-fit:cover";
                                      alt="">
                              </td>
                              <td>{{ $product['name'] }}</td>

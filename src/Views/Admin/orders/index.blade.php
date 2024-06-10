@@ -33,7 +33,20 @@
 
                         <th scope="col">Mã Đơn</th>
                         <th scope="col">Khách hàng</th>
-                        <th scope="col">Ngày tạo</th>
+                        <th scope="col">
+                            <div class="d-flex">
+                                <p class="mb-0">Ngày tạo</p>
+                                <p class="mb-0 flex items-center">
+                                    @if ($sort_by == 'created_asc')
+                                        <a href="{{ url('admin/orders?sort_by=created_desc') }}"><i
+                                                class="fa-solid fa-arrow-down-short-wide" style="color: #000"></i></a>
+                                    @else
+                                        <a href="{{ url('admin/orders?sort_by=created_asc') }}"><i
+                                                class="fa-solid fa-arrow-up-wide-short" style="color: #000"></i></a>
+                                    @endif
+                                </p>
+                            </div>
+                        </th>
                         <th scope="col">Trạng thái thanh toán</th>
                         <th scope="col">Trạng thái Giao</th>
                         <th scope="col">Hành động</th>
@@ -51,17 +64,17 @@
 
                             <td>
                                 <div class="d-flex flex-column">
-                                    <span>{{ $item['user_name'] ?? $item['shipping_name'] }}</span>
-                                    <span>{{ $item['user_email'] ?? $item['shipping_email'] }}</span>
-                                    <span>{{ $item['user_phone'] ?? $item['shipping_phone'] }}</span>
-                                    <span>{{ $item['user_address'] ?? $item['shipping_address'] }}</span>
+                                    <span>{{ $item['shipping_name'] ?: $item['user_name'] }}</span>
+                                    <span>{{ $item['shipping_email'] ?: $item['user_email'] }}</span>
+                                    <span>{{ $item['shipping_phone'] ?: $item['user_phone'] }}</span>
+                                    <span>{{ $item['shipping_address'] ?: $item['user_address'] }}</span>
                                 </div>
                             </td>
 
                             <td>{{ date('d/m/Y H:i:s', strtotime($item['created_at'])) }}</td>
 
                             <td>
-                                <p class="{{ $item['status_payment'] === 0 ? 'text-danger' : 'text-success' }}"
+                                <p class="{{ $item['status_payment'] === 0 ? 'text-danger' : 'text-success' }} mb-0"
                                     style="font-weight: 700">
                                     {{ $item['status_payment'] === 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</p>
                             </td>
@@ -113,41 +126,53 @@
 
 
                 </tbody>
+
             </table>
-
-            @if ($totalPage > 1)
-                <div class="d-flex justify-content-end">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            @if ($page > 1)
-                                <li class="page-item">
-                                    <a class="page-link linkm" href="{{ url('admin/orders') }}?page={{ $page - 1 }}">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                            @endif
-
-                            <?php for($i = 1 ; $i <= $totalPage ; $i++) : ?>
-
-                            <li class="page-item"><a class="page-link linkm"
-                                    href="{{ url('admin/orders') }}?page={{ $i }}"><?= $i ?></a>
-                            </li>
-
-                            <?php endfor ?>
-
-                            <?php if($page < $totalPage) : ?>
-
-                            <li class="page-item">
-                                <a class="page-link linkm" href="{{ url('admin/orders') }}?page={{ $page + 1 }}">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-
-                            <?php endif ?>
-                        </ul>
-                    </nav>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <form action="{{ url('admin/orders') }}" method="get">
+                        <select class="form-select" name="perPage" onchange="this.form.submit()">
+                            <option value="5" {{ $perPage == 5 ? 'selected' : '' }}>5</option>
+                            <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>10</option>
+                            <option value="15" {{ $perPage == 15 ? 'selected' : '' }}>15</option>
+                        </select>
+                    </form>
                 </div>
-            @endif
+
+
+                @if ($totalPage > 1)
+                    <div class="d-flex justify-content-end">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                @if ($page > 1)
+                                    <li class="page-item">
+                                        <a class="page-link linkm"
+                                            href="{{ url('admin/orders') }}?page={{ $page - 1 }}">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @for ($i = 1; $i <= $totalPage; $i++)
+                                    <li class="page-item"><a class="page-link linkm"
+                                            href="{{ url('admin/orders') }}?page={{ $i }}"><?= $i ?></a>
+                                    </li>
+                                @endfor
+
+                                @if ($page < $totalPage)
+                                    <li class="page-item">
+                                        <a class="page-link linkm"
+                                            href="{{ url('admin/orders') }}?page={{ $page + 1 }}">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
+                @endif
+            </div>
+
         </div>
 
     </div>

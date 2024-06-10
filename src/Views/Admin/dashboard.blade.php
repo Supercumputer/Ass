@@ -155,7 +155,11 @@
                             </td>
 
                             <td>{{ $orderItem['created_at'] }}</td>
-                            <td>{{ $orderItem['status_payment'] === 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
+                            <td>
+                                <p class="{{ $orderItem['status_payment'] === 0 ? 'text-danger' : 'text-success' }} mb-0"
+                                    style="font-weight: 700">
+                                    {{ $orderItem['status_payment'] === 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</p>
+                            </td>
 
                             <td>{{ $orderItem['status_delivery'] == 0
                                 ? 'Chờ xác nhận'
