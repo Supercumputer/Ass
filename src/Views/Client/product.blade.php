@@ -120,14 +120,13 @@ Home
                                 <img src="{{ asset($product['img_thumbnail']) }}" alt="">
                             </a>
                             <h1 class="title">{{ $product['name'] }}</h1>
-                            <div class="box_price d-flex align-items-center">
-                            
-                                @if($product['price_sale'])
-                                    <p class="t_price">đ {{number_format($product['price_regular'], 0, "", ".")}} </p> - <p class="t_discount mx-1">₫ {{number_format($product['price_sale'], 0, "", ".")}}</p>
-                                  @else
-                                  <p class="t_discount">₫ {{number_format($product['price_regular'], 0, "", ".")}} </p>
-                                  @endif
-                         </div>
+                            <span>
+                                @if ($product['price_sale'])
+                                {{number_format($product['price_sale'], 0, "", ".")}} VND
+                                @else
+                                    {{number_format($product['price_regular'], 0, "", ".")}} VND
+                                @endif
+                            </span>
                             <a href="{{ url('cart/add') }}?quantity=1&productID={{ $product['id'] }}"
                                 class="btn btn-danger mx-2 mb-2">Thêm vào giỏ hàng</a>
                         </div>
