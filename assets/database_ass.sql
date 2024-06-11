@@ -3,7 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
+
 -- Generation Time: Jun 11, 2024 at 02:41 AM
+
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -56,7 +58,11 @@ CREATE TABLE `cart_details` (
 --
 
 INSERT INTO `cart_details` (`cart_id`, `product_id`, `quantity`) VALUES
+<<<<<<< HEAD
 (8, 62, 4);
+=======
+(8, 57, 7);
+>>>>>>> cf99e7e4cde870d525a3142ca0365e70de17b1e6
 
 -- --------------------------------------------------------
 
@@ -111,12 +117,16 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `user_name`, `user_email`, `user_phone`, `user_address`, `shipping_name`, `shipping_email`, `shipping_phone`, `shipping_address`, `status_delivery`, `status_payment`, `created_at`, `updated_at`) VALUES
+<<<<<<< HEAD
 (17, 117, 'Hồ Văn Quang', 'quang@gmail.com', '0338973258', 'Tu hoàng, Nam Từ Liêm, Hà Nội.', NULL, NULL, NULL, NULL, '0', 0, '2024-06-10 17:09:49', '2024-06-10 17:09:49'),
 (18, 117, 'Quang', 'quang@gmail.com', '0338973258', 'Quỳnh Minh, Quỳnh Lưu, Nghệ An.', NULL, NULL, NULL, NULL, '0', 0, '2024-06-10 17:10:46', '2024-06-10 17:10:46'),
 (19, 120, 'Nguyễn Hoàng', 'HoangBa@gmail.com', '0338973258', 'Quỳnh Bá, Hoàng Mai, Thanh Hóa', NULL, NULL, NULL, NULL, '0', 0, '2024-06-10 17:11:52', '2024-06-10 17:11:52'),
 (20, 121, 'Nguyễn An', 'An@gmail.com', '0338973456', 'Vĩnh Nam, An Giang, Việt Nam', NULL, NULL, NULL, NULL, '0', 0, '2024-06-11 02:28:37', '2024-06-11 02:28:37'),
 (21, 117, 'Quang', 'quang@gmail.com', '0338973258', 'Ngõ 35/31, Tu hoàng, Nam từ Liêm, hà Nội', NULL, NULL, NULL, NULL, '4', 0, '2024-06-11 02:30:28', '2024-06-11 02:30:28'),
 (22, 122, 'Vô Danh', 'DoZanh@gmail.com', '0338256258', 'X1, Quỳnh Thiện, Quỳnh Bá, Nghệ An', NULL, NULL, NULL, NULL, '0', 0, '2024-06-11 02:32:10', '2024-06-11 02:32:10');
+=======
+(16, 117, 'Quang', 'quang@gmail.com', '11111111111111', 'Đ. Nội khu Tòa No.2', NULL, NULL, NULL, NULL, '2', 0, NULL, NULL);
+>>>>>>> cf99e7e4cde870d525a3142ca0365e70de17b1e6
 
 -- --------------------------------------------------------
 
@@ -138,6 +148,7 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `price_regular`, `price_sale`) VALUES
+<<<<<<< HEAD
 (20, 17, 56, 3, 500000, 490000),
 (21, 17, 67, 5, 600000, NULL),
 (22, 18, 65, 1, 200000, 189000),
@@ -152,6 +163,12 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `price_
 (31, 21, 67, 3, 600000, NULL),
 (32, 22, 66, 2, 185000, 150000),
 (33, 22, 57, 2, 150000, 139000);
+=======
+(16, 16, 57, 7, 1000, 200),
+(17, 16, 56, 3, 1200, 900),
+(18, 16, 66, 3, 1000, NULL),
+(19, 16, 65, 1, 1000, NULL);
+>>>>>>> cf99e7e4cde870d525a3142ca0365e70de17b1e6
 
 -- --------------------------------------------------------
 
@@ -219,10 +236,14 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `avatar`, `email`, `password`, `type`, `created_at`, `updated_at`, `is_active`) VALUES
 (117, 'Quang', 'assets/uploads/1718029838Screenshot 2024-06-10 212937.png', 'quang@gmail.com', '$2y$10$/62YvxzYC6CQk9qk68ver.WwXxDWhLr9J3px/L43dxhRioFi8uWq6', 'admin', '2024-06-06 07:29:16', '2024-06-06 07:29:16', 1),
+<<<<<<< HEAD
 (118, 'Thành', 'assets/uploads/1718029693z2924428768930_b257de7b33218f323f8d25ef916020f7.jpg', 'thanh@gmail.com', '$2y$10$qWTGdkIzSSwLb7Xyi5y8YeGQOl1C3Y8eDE3XOfblddi/oYKzP7zgS', 'admin', '2024-06-06 07:30:55', '2024-06-06 07:30:55', 1),
 (120, 'Nguyễn Hoàng', NULL, 'HoangBa@gmail.com', '$2y$10$8u3cq.JtQipU2GZPJFxCgOuhxefSMEACRkVXfMvqbdTjLEt8PZgtu', 'member', '2024-06-10 17:11:52', '2024-06-10 17:11:52', 0),
 (121, 'Nguyễn An', NULL, 'An@gmail.com', '$2y$10$f3HOWMR/dM3/6bBarg/vYOr7WxQO7o90LPjJp/fYMg8MOpkKhOUJ6', 'member', '2024-06-11 02:28:37', '2024-06-11 02:28:37', 0),
 (122, 'Vô Danh', NULL, 'DoZanh@gmail.com', '$2y$10$.wqB0.ZwpltGfiVBAftqvOyvUXIjh3383iml2KcVhSRNr4R30J0O6', 'member', '2024-06-11 02:32:10', '2024-06-11 02:32:10', 0);
+=======
+(118, 'Thành', 'assets/uploads/1718029693z2924428768930_b257de7b33218f323f8d25ef916020f7.jpg', 'trung@gmail.com', '$2y$10$qWTGdkIzSSwLb7Xyi5y8YeGQOl1C3Y8eDE3XOfblddi/oYKzP7zgS', 'admin', '2024-06-06 07:30:55', '2024-06-06 07:30:55', 1);
+>>>>>>> cf99e7e4cde870d525a3142ca0365e70de17b1e6
 
 --
 -- Indexes for dumped tables
@@ -304,13 +325,21 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
+<<<<<<< HEAD
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+=======
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+>>>>>>> cf99e7e4cde870d525a3142ca0365e70de17b1e6
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
+<<<<<<< HEAD
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+=======
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+>>>>>>> cf99e7e4cde870d525a3142ca0365e70de17b1e6
 
 --
 -- AUTO_INCREMENT for table `products`
